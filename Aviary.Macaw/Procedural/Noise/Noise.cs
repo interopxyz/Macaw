@@ -57,7 +57,7 @@ namespace Aviary.Macaw.Procedural
             Seed = seed;
         }
 
-        public Noise(int width, int height, int depth, int seed)
+        public Noise(int seed, int width, int height, int depth)
         {
             Width = width;
             Height = height;
@@ -383,7 +383,7 @@ namespace Aviary.Macaw.Procedural
 
             fastNoise.GradientPerturb(ref PerturbanceFrequency, ref PerturbanceFrequency, ref PerturbanceAmplitude);
             fastNoise.SetGradientPerturbAmp(PerturbanceAmplitude);
-
+           
             fastNoise.SetFractalType((FastNoiseBase.FractalType)(int)FractalMode);
             fastNoise.SetFractalOctaves(Octaves);
             fastNoise.SetFractalLacunarity(Lacunarity);
