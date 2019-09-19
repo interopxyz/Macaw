@@ -1,0 +1,2 @@
+# Macaw
+Bitmap editing library
