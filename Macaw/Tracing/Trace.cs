@@ -10,7 +10,7 @@ using Ws = System.Windows.Shapes;
 using Pt = CsPotrace;
 using Rg = Rhino.Geometry;
 
-namespace Macaw
+namespace Aviary.Macaw
 {
     public static class TraceBitmap
     {

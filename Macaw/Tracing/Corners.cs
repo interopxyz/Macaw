@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Macaw.Tracing
+namespace Aviary.Macaw.Tracing
 {
     class Corners
     {

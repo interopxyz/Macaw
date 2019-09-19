@@ -1,9 +1,9 @@
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using SoundInTheory.DynamicImage;
 
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Macaw.App_Start.DynamicImage), "PreStart")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Aviary.Macaw.App_Start.DynamicImage), "PreStart")]
 
-namespace Macaw.App_Start
+namespace Aviary.Macaw.App_Start
 {
 	public static class DynamicImage
 	{
