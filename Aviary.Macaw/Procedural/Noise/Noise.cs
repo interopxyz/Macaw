@@ -18,11 +18,17 @@ namespace Aviary.Macaw.Procedural
 
         #region members
 
-        public enum InterpolationModes { Linear, Hermite, Quintic, None };
-        public InterpolationModes InterpolationMode = InterpolationModes.None;
+        public enum OutputModes { None, Value, Perlin, Simplex, Cubic, White, Cellular };
+        protected OutputModes OutputStatus = OutputModes.None;
+
+        public enum InterpolationModes { Linear, Hermite, Quintic };
+        public InterpolationModes InterpolationMode = InterpolationModes.Linear;
 
         public enum FractalModes { FBM, Billow, Rigid, None };
         public FractalModes FractalMode = FractalModes.None;
+
+        public enum CellularModes { Euclidean, Manhattan, Natural };
+        public CellularModes CellularMode = CellularModes.Euclidean;
 
         public int Seed = 1;
 
@@ -30,7 +36,7 @@ namespace Aviary.Macaw.Procedural
         public int Height = 100;
         public int Depth = 0;
 
-        public double Frequency = 0.02;
+        public double Frequency = 0.025;
 
         public int Octaves = 5;
         public double Lacunarity = 2.0;
@@ -39,10 +45,12 @@ namespace Aviary.Macaw.Procedural
         public double PerturbanceAmplitude = 30;
         public double PerturbanceFrequency = 0.01;
 
-        public List<double> Values = new List<double>();
+        public double Jitter = 1.0;
+
+        protected List<double> Values = new List<double>();
 
         protected FastNoiseBase fastNoise = new FastNoiseBase(1);
-        
+
         #endregion
 
         #region constructors
@@ -50,6 +58,30 @@ namespace Aviary.Macaw.Procedural
         public Noise()
         {
 
+        }
+
+        public Noise(Noise noise)
+        {
+            Seed = noise.Seed;
+
+            Width = noise.Width;
+            Height = noise.Height;
+            Depth = noise.Depth;
+
+            Frequency = noise.Frequency;
+
+            Octaves = noise.Octaves;
+            Lacunarity = noise.Lacunarity;
+            Gain = noise.Gain;
+
+            PerturbanceAmplitude = noise.PerturbanceAmplitude;
+            PerturbanceFrequency = noise.PerturbanceFrequency;
+
+            OutputStatus = noise.OutputStatus;
+            InterpolationMode = noise.InterpolationMode;
+            FractalMode = noise.FractalMode;
+
+            Jitter = noise.Jitter;
         }
 
         public Noise(int seed)
@@ -69,11 +101,12 @@ namespace Aviary.Macaw.Procedural
         #endregion
 
         #region properties
-        
+
         #region public 
 
         public Bitmap GetCubic(bool applyFractals = false)
         {
+            OutputStatus = OutputModes.Cubic;
             if (applyFractals)
             {
                 return GetCubicFractal();
@@ -86,6 +119,8 @@ namespace Aviary.Macaw.Procedural
 
         public Bitmap GetPerlin(bool applyFractals = false)
         {
+            OutputStatus = OutputModes.Perlin;
+
             if (applyFractals)
             {
                 return GetPerlinFractal();
@@ -98,6 +133,8 @@ namespace Aviary.Macaw.Procedural
 
         public Bitmap GetSimplex(bool applyFractals = false)
         {
+            OutputStatus = OutputModes.Simplex;
+
             if (applyFractals)
             {
                 return GetSimplexFractal();
@@ -110,11 +147,15 @@ namespace Aviary.Macaw.Procedural
 
         public Bitmap GetWhiteNoise()
         {
-                return GetWhiteNoiseNormal();
+            OutputStatus = OutputModes.White;
+
+            return GetWhiteNoiseNormal();
         }
 
         public Bitmap GetValue(bool applyFractals = false)
         {
+            OutputStatus = OutputModes.Value;
+
             if (applyFractals)
             {
                 return GetValueFractal();
@@ -135,7 +176,7 @@ namespace Aviary.Macaw.Procedural
 
         private Bitmap GetCubicNormal()
         {
-            Bitmap bitmap = GetBitmap();
+            Bitmap bitmap = GetNoiseBitmap();
             fastNoise.SetNoiseType(FastNoiseBase.NoiseType.Cubic);
 
             int k = 0;
@@ -157,7 +198,7 @@ namespace Aviary.Macaw.Procedural
 
         private Bitmap GetPerlinNormal()
         {
-            Bitmap bitmap = GetBitmap();
+            Bitmap bitmap = GetNoiseBitmap();
             fastNoise.SetNoiseType(FastNoiseBase.NoiseType.Perlin);
 
             int k = 0;
@@ -179,7 +220,7 @@ namespace Aviary.Macaw.Procedural
 
         private Bitmap GetSimplexNormal()
         {
-            Bitmap bitmap = GetBitmap();
+            Bitmap bitmap = GetNoiseBitmap();
             fastNoise.SetNoiseType(FastNoiseBase.NoiseType.Simplex);
 
             int k = 0;
@@ -201,7 +242,7 @@ namespace Aviary.Macaw.Procedural
 
         private Bitmap GetWhiteNoiseNormal()
         {
-            Bitmap bitmap = GetBitmap();
+            Bitmap bitmap = GetNoiseBitmap();
             fastNoise.SetNoiseType(FastNoiseBase.NoiseType.WhiteNoise);
 
             int k = 0;
@@ -223,7 +264,7 @@ namespace Aviary.Macaw.Procedural
 
         private Bitmap GetValueNormal()
         {
-            Bitmap bitmap = GetBitmap();
+            Bitmap bitmap = GetNoiseBitmap();
             fastNoise.SetNoiseType(FastNoiseBase.NoiseType.Value);
 
             int k = 0;
@@ -250,7 +291,7 @@ namespace Aviary.Macaw.Procedural
 
         private Bitmap GetCubicFractal()
         {
-            Bitmap bitmap = GetBitmap();
+            Bitmap bitmap = GetNoiseBitmap();
             fastNoise.SetNoiseType(FastNoiseBase.NoiseType.CubicFractal);
 
             int k = 0;
@@ -272,7 +313,7 @@ namespace Aviary.Macaw.Procedural
 
         private Bitmap GetPerlinFractal()
         {
-            Bitmap bitmap = GetBitmap();
+            Bitmap bitmap = GetNoiseBitmap();
             fastNoise.SetNoiseType(FastNoiseBase.NoiseType.PerlinFractal);
 
             int k = 0;
@@ -294,7 +335,7 @@ namespace Aviary.Macaw.Procedural
 
         private Bitmap GetSimplexFractal()
         {
-            Bitmap bitmap = GetBitmap();
+            Bitmap bitmap = GetNoiseBitmap();
             fastNoise.SetNoiseType(FastNoiseBase.NoiseType.SimplexFractal);
 
             int k = 0;
@@ -316,7 +357,7 @@ namespace Aviary.Macaw.Procedural
 
         private Bitmap GetValueFractal()
         {
-            Bitmap bitmap = GetBitmap();
+            Bitmap bitmap = GetNoiseBitmap();
             fastNoise.SetNoiseType(FastNoiseBase.NoiseType.ValueFractal);
 
             int k = 0;
@@ -326,6 +367,34 @@ namespace Aviary.Macaw.Procedural
                 {
                     fastNoise.SetNoiseType(FastNoiseBase.NoiseType.Value);
                     double Value = fastNoise.GetNoise(j, i, Depth);
+                    Values.Add(Value);
+                    int IntValue = (int)(255.0 * (1.0 + Value) / 2);
+
+                    bitmap.SetPixel(j, i, Color.FromArgb(IntValue, IntValue, IntValue));
+                    k += 1;
+                }
+            }
+
+            return bitmap;
+        }
+
+        #endregion
+
+        #region cellular
+
+
+        public Bitmap GetCellular()
+        {
+            Bitmap bitmap = GetNoiseBitmap();
+            OutputStatus = OutputModes.Cellular;
+
+            fastNoise.SetNoiseType(FastNoiseBase.NoiseType.Cellular);
+            int k = 0;
+            for (int i = 0; i < Height; i++)
+            {
+                for (int j = 0; j < Width; j++)
+                {
+                    double Value = fastNoise.GetCellular(j, i, Depth);
                     Values.Add(Value);
                     int IntValue = (int)(255.0 * (1.0 + Value) / 2);
 
@@ -350,7 +419,7 @@ namespace Aviary.Macaw.Procedural
         {
             Frequency = frequency;
             InterpolationMode = interpolation;
-            
+
         }
 
         public void SetFractal(FractalModes mode, int octaves, double lacunarity, double gain)
@@ -374,22 +443,50 @@ namespace Aviary.Macaw.Procedural
             PerturbanceFrequency = frequency;
         }
 
-        private Bitmap GetBitmap()
+        private Bitmap GetNoiseBitmap()
         {
             fastNoise = new FastNoiseBase(Seed);
 
             fastNoise.SetFrequency(Frequency);
             fastNoise.SetInterp((FastNoiseBase.Interp)(int)InterpolationMode);
 
-            fastNoise.GradientPerturb(ref PerturbanceFrequency, ref PerturbanceFrequency, ref PerturbanceAmplitude);
-            fastNoise.SetGradientPerturbAmp(PerturbanceAmplitude);
-           
-            fastNoise.SetFractalType((FastNoiseBase.FractalType)(int)FractalMode);
-            fastNoise.SetFractalOctaves(Octaves);
-            fastNoise.SetFractalLacunarity(Lacunarity);
-            fastNoise.SetFractalGain(Gain);
+            //fastNoise.GradientPerturb(ref PerturbanceFrequency, ref PerturbanceFrequency, ref PerturbanceAmplitude);
+            //fastNoise.SetGradientPerturbAmp(PerturbanceAmplitude);
+
+            //fastNoise.SetFractalType((FastNoiseBase.FractalType)(int)FractalMode);
+            //fastNoise.SetFractalOctaves(Octaves);
+            //fastNoise.SetFractalLacunarity(Lacunarity);
+            //fastNoise.SetFractalGain(Gain);
 
             return new Bitmap(Width, Height);
+        }
+
+        private Bitmap GetCellularBitmap()
+        {
+            fastNoise = new FastNoiseBase(Seed);
+
+            fastNoise.SetCellularJitter((float)Jitter);
+            fastNoise.SetCellularDistanceFunction(FastNoiseBase.CellularDistanceFunction.
+            fastNoise.SetInterp((FastNoiseBase.Interp)(int)InterpolationMode);
+
+            //fastNoise.GradientPerturb(ref PerturbanceFrequency, ref PerturbanceFrequency, ref PerturbanceAmplitude);
+            //fastNoise.SetGradientPerturbAmp(PerturbanceAmplitude);
+
+            //fastNoise.SetFractalType((FastNoiseBase.FractalType)(int)FractalMode);
+            //fastNoise.SetFractalOctaves(Octaves);
+            //fastNoise.SetFractalLacunarity(Lacunarity);
+            //fastNoise.SetFractalGain(Gain);
+
+            return new Bitmap(Width, Height);
+        }
+
+        #endregion
+
+        #region overrides
+
+        public override string ToString()
+        {
+            return OutputStatus.ToString() + " Noise";
         }
 
         #endregion
