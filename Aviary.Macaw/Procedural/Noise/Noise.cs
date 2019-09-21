@@ -30,6 +30,9 @@ namespace Aviary.Macaw.Procedural
         public enum CellularModes { Euclidean, Manhattan, Natural };
         public CellularModes CellularMode = CellularModes.Euclidean;
 
+        public enum CellularOutputs { Value, Lookup, Distance, Distance2, Distance2Add, Distance2Sub, Distance2Mul, Distance2Div }
+        public CellularOutputs CellularOutput = CellularOutputs.Value;
+
         public int Seed = 1;
 
         public int Width = 100;
@@ -385,19 +388,20 @@ namespace Aviary.Macaw.Procedural
 
         public Bitmap GetCellular()
         {
-            Bitmap bitmap = GetNoiseBitmap();
             OutputStatus = OutputModes.Cellular;
 
+            Bitmap bitmap = GetCellularBitmap();
             fastNoise.SetNoiseType(FastNoiseBase.NoiseType.Cellular);
+
             int k = 0;
             for (int i = 0; i < Height; i++)
             {
                 for (int j = 0; j < Width; j++)
                 {
-                    double Value = fastNoise.GetCellular(j, i, Depth);
+                    double Value = fastNoise.GetNoise(j, i, Depth);
                     Values.Add(Value);
                     int IntValue = (int)(255.0 * (1.0 + Value) / 2);
-
+                    if (IntValue > 255) IntValue = 255;
                     bitmap.SetPixel(j, i, Color.FromArgb(IntValue, IntValue, IntValue));
                     k += 1;
                 }
@@ -419,7 +423,6 @@ namespace Aviary.Macaw.Procedural
         {
             Frequency = frequency;
             InterpolationMode = interpolation;
-
         }
 
         public void SetFractal(FractalModes mode, int octaves, double lacunarity, double gain)
@@ -465,9 +468,13 @@ namespace Aviary.Macaw.Procedural
         {
             fastNoise = new FastNoiseBase(Seed);
 
-            fastNoise.SetCellularJitter((float)Jitter);
-            fastNoise.SetCellularDistanceFunction(FastNoiseBase.CellularDistanceFunction.
+            fastNoise.SetFrequency(Frequency);
             fastNoise.SetInterp((FastNoiseBase.Interp)(int)InterpolationMode);
+
+            fastNoise.SetCellularJitter((float)Jitter);
+
+            fastNoise.SetCellularDistanceFunction((FastNoiseBase.CellularDistanceFunction)CellularMode);
+            fastNoise.SetCellularReturnType((FastNoiseBase.CellularReturnType)CellularOutput);
 
             //fastNoise.GradientPerturb(ref PerturbanceFrequency, ref PerturbanceFrequency, ref PerturbanceAmplitude);
             //fastNoise.SetGradientPerturbAmp(PerturbanceAmplitude);
@@ -479,6 +486,8 @@ namespace Aviary.Macaw.Procedural
 
             return new Bitmap(Width, Height);
         }
+
+        
 
         #endregion
 
