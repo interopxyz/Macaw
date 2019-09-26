@@ -80,6 +80,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\DynamicImage.cs" />
+    <Compile Include="Extensions\BitmapExtensions.cs" />
+    <Compile Include="Layering\Composition.cs" />
+    <Compile Include="Layering\Layer.cs" />
     <Compile Include="Procedural\Libraries\FastNoise.cs" />
     <Compile Include="Procedural\Noise\Noise.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
