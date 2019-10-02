@@ -98,6 +98,7 @@
     <Compile Include="Types\Image.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Filters\Channels\" />
     <Folder Include="Procedural\Cellular\" />
   </ItemGroup>
   <ItemGroup>
