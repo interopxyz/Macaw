@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Af = Accord.Imaging.Filters;
+
 namespace Aviary.Macaw
 {
     public class Image
@@ -12,7 +14,11 @@ namespace Aviary.Macaw
 
         #region members
 
+        public enum ImageTypes { GrayscaleBT709, GrayscaleRMY, GrayscaleY, GrayScale16bpp, Rgb16bpp, Rgb24bpp, None };
+        public ImageTypes ImageType = ImageTypes.None;
+
         protected Bitmap bitmap = new Bitmap(100, 100);
+        protected List<Filter> filters = new List<Filter>();
 
         #endregion
 
@@ -26,6 +32,11 @@ namespace Aviary.Macaw
         public Image(Image image)
         {
             this.Bitmap = image.bitmap;
+            this.ImageType = image.ImageType;
+            foreach(Filter filter in filters)
+            {
+                this.filters.Add(new Filter(filter));
+            }
         }
 
         public Image(Bitmap bitmap)
@@ -47,7 +58,17 @@ namespace Aviary.Macaw
 
         #region members
 
+        public Bitmap GetFilteredBitmap()
+        {
+            Af.FiltersSequence sequence = new Af.FiltersSequence();
+            foreach(Filter filter in filters)
+            {
+                sequence.Add(filter.FilterObject);
+            }
 
+            return sequence.Apply(this.Bitmap);
+
+        }
 
         #endregion
 
@@ -55,7 +76,9 @@ namespace Aviary.Macaw
 
         public override string ToString()
         {
-            return "Image ("+bitmap.Width+"x"+bitmap.Height+")";
+            string text = "Image(" + bitmap.Width + "," + bitmap.Height + ")";
+            if (filters.Count > 0) text += ("+" + filters.Count + " filters");
+            return text;
         }
 
         #endregion

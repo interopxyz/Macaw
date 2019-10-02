@@ -85,6 +85,7 @@
     <Compile Include="Extensions\GraphicExtensions.cs" />
     <Compile Include="Extensions\RhinoExtensions.cs" />
     <Compile Include="Files\BitmapFromFile.cs" />
+    <Compile Include="Filters\Channels\Filter.cs" />
     <Compile Include="Layering\Composition.cs" />
     <Compile Include="Layering\Layer.cs" />
     <Compile Include="Layering\Modifier.cs" />
@@ -98,7 +99,6 @@
     <Compile Include="Types\Image.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Filters\Channels\" />
     <Folder Include="Procedural\Cellular\" />
   </ItemGroup>
   <ItemGroup>
