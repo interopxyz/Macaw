@@ -80,13 +80,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\DynamicImage.cs" />
+    <Compile Include="Extensions\AccordExtensions.cs" />
     <Compile Include="Extensions\BitmapExtensions.cs" />
+    <Compile Include="Extensions\GraphicExtensions.cs" />
+    <Compile Include="Extensions\RhinoExtensions.cs" />
+    <Compile Include="Files\BitmapFromFile.cs" />
     <Compile Include="Layering\Composition.cs" />
     <Compile Include="Layering\Layer.cs" />
+    <Compile Include="Layering\Modifier.cs" />
     <Compile Include="Procedural\Libraries\FastNoise.cs" />
     <Compile Include="Procedural\Noise\Noise.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tracing\Boudaries.cs" />
+    <Compile Include="Tracing\Blobs.cs" />
     <Compile Include="Tracing\Corners.cs" />
     <Compile Include="Tracing\Shapes.cs" />
     <Compile Include="Tracing\Trace.cs" />

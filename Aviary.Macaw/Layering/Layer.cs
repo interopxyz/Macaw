@@ -20,6 +20,8 @@ namespace Aviary.Macaw.Layering
         protected bool isMasked = false;
         public double Opacity = 100.0;
 
+        public List<Modifier> Modifiers = new List<Modifier>();
+
         #endregion
 
         #region constructors
@@ -46,6 +48,10 @@ namespace Aviary.Macaw.Layering
             this.mask = layer.Mask;
             this.isMasked = layer.isMasked;
             this.Opacity = layer.Opacity;
+            foreach(Modifier modifier in layer.Modifiers)
+            {
+                this.Modifiers.Add(new Modifier(modifier));
+            }
         }
 
         #endregion

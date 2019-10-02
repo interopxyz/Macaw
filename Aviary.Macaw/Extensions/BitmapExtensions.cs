@@ -61,5 +61,129 @@ namespace Aviary.Macaw
 
         #endregion
 
+        #region getValues
+
+        public static List<Sd.Color> GetColorValues(this Sd.Bitmap input)
+        {
+            List<Sd.Color> output = new List<Sd.Color>();
+
+            for (int i = 0; i < input.Height; i++)
+            {
+                for (int j = 0; j < input.Width; j++)
+                {
+                    output.Add(input.GetPixel(j, i));
+                }
+            }
+
+            return output;
+        }
+
+        public static List<int> GetAValues(this Sd.Bitmap input)
+        {
+            List<int> output = new List<int>();
+
+            for(int i =0;i<input.Height;i++)
+            {
+                for (int j = 0; j < input.Width; j++)
+                {
+                    output.Add(input.GetPixel(j, i).A);
+                }
+            }
+
+            return output;
+        }
+
+        public static List<int> GetRValues(this Sd.Bitmap input)
+        {
+            List<int> output = new List<int>();
+
+            for (int i = 0; i < input.Height; i++)
+            {
+                for (int j = 0; j < input.Width; j++)
+                {
+                    output.Add(input.GetPixel(j, i).R);
+                }
+            }
+
+            return output;
+        }
+
+        public static List<int> GetGValues(this Sd.Bitmap input)
+        {
+            List<int> output = new List<int>();
+
+            for (int i = 0; i < input.Height; i++)
+            {
+                for (int j = 0; j < input.Width; j++)
+                {
+                    output.Add(input.GetPixel(j, i).G);
+                }
+            }
+
+            return output;
+        }
+
+        public static List<int> GetBValues(this Sd.Bitmap input)
+        {
+            List<int> output = new List<int>();
+
+            for (int i = 0; i < input.Height; i++)
+            {
+                for (int j = 0; j < input.Width; j++)
+                {
+                    output.Add(input.GetPixel(j, i).B);
+                }
+            }
+
+            return output;
+        }
+
+        public static List<double> GetHueValues(this Sd.Bitmap input)
+        {
+            List<double> output = new List<double>();
+
+            for (int i = 0; i < input.Height; i++)
+            {
+                for (int j = 0; j < input.Width; j++)
+                {
+                    output.Add(input.GetPixel(j, i).GetHue());
+                }
+            }
+
+            return output;
+        }
+
+        public static List<double> GetSaturationValues(this Sd.Bitmap input)
+        {
+            List<double> output = new List<double>();
+
+            for (int i = 0; i < input.Height; i++)
+            {
+                for (int j = 0; j < input.Width; j++)
+                {
+                    output.Add(input.GetPixel(j, i).GetSaturation());
+                }
+            }
+
+            return output;
+        }
+
+        public static List<double> GetBrightnessValues(this Sd.Bitmap input)
+        {
+            List<double> output = new List<double>();
+
+            for (int i = 0; i < input.Height; i++)
+            {
+                for (int j = 0; j < input.Width; j++)
+                {
+                    output.Add(input.GetPixel(j, i).GetBrightness());
+                }
+            }
+
+            return output;
+        }
+
+        #endregion
+
     }
 }

@@ -64,6 +64,11 @@ namespace Aviary.Macaw.Layering
                     imgLayer.Filters.Add(opacity);
                 }
 
+                foreach(Modifier modifier in layer.Modifiers)
+                {
+                    imgLayer.Filters.Add(modifier.GetFilter());
+                }
+
                 composition.Layers.Add(imgLayer);
             }
 
