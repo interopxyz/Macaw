@@ -15,10 +15,10 @@ namespace Aviary.Macaw
         #region members
 
         public enum ImageTypes { GrayscaleBT709, GrayscaleRMY, GrayscaleY, GrayScale16bpp, Rgb16bpp, Rgb24bpp, None };
-        public ImageTypes ImageType = ImageTypes.None;
+        public ImageTypes ImageType = ImageTypes.Rgb24bpp;
 
         protected Bitmap bitmap = new Bitmap(100, 100);
-        protected List<Filter> filters = new List<Filter>();
+        public List<Filter> Filters = new List<Filter>();
 
         #endregion
 
@@ -33,9 +33,9 @@ namespace Aviary.Macaw
         {
             this.Bitmap = image.bitmap;
             this.ImageType = image.ImageType;
-            foreach(Filter filter in filters)
+            foreach(Filter filter in image.Filters)
             {
-                this.filters.Add(new Filter(filter));
+                this.Filters.Add(new Filter(filter));
             }
         }
 
@@ -61,10 +61,12 @@ namespace Aviary.Macaw
         public Bitmap GetFilteredBitmap()
         {
             Af.FiltersSequence sequence = new Af.FiltersSequence();
-            foreach(Filter filter in filters)
+            foreach(Filter filter in Filters)
             {
                 sequence.Add(filter.FilterObject);
             }
+
+
 
             return sequence.Apply(this.Bitmap);
 
@@ -77,7 +79,7 @@ namespace Aviary.Macaw
         public override string ToString()
         {
             string text = "Image(" + bitmap.Width + "," + bitmap.Height + ")";
-            if (filters.Count > 0) text += ("+" + filters.Count + " filters");
+            if (Filters.Count > 0) text += ("[" + Filters.Count + " filters]");
             return text;
         }
 

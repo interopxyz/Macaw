@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using SoundInTheory.DynamicImage.Filters;
 using SoundInTheory.DynamicImage;
+using Sf = SoundInTheory.DynamicImage.Filters;
 
 using Wg = Aviary.Wind.Graphics;
 
@@ -49,7 +50,7 @@ namespace Aviary.Macaw.Layering
 
         #region properties
 
-        public Filter GetFilter()
+        public Sf.Filter GetFilter()
         {
             switch(this.ModifierMode)
             {
@@ -84,7 +85,7 @@ namespace Aviary.Macaw.Layering
 
         #region methods
 
-        private Filter GetBorderFilter()
+        private Sf.Filter GetBorderFilter()
         {
             BorderFilter filter = new BorderFilter();
 
@@ -95,7 +96,7 @@ namespace Aviary.Macaw.Layering
             return filter;
         }
 
-        private Filter GetBrightnessFilter()
+        private Sf.Filter GetBrightnessFilter()
         {
             BrightnessAdjustmentFilter filter = new BrightnessAdjustmentFilter();
             filter.Level = (int)Value;
@@ -104,7 +105,7 @@ namespace Aviary.Macaw.Layering
             return filter;
         }
 
-        private Filter GetVignetteFilter()
+        private Sf.Filter GetVignetteFilter()
         {
             VignetteFilter filter = new VignetteFilter();
 
@@ -112,7 +113,7 @@ namespace Aviary.Macaw.Layering
             return filter;
         }
 
-        private Filter GetSolarizeFilter()
+        private Sf.Filter GetSolarizeFilter()
         {
             SolarizeFilter filter = new SolarizeFilter();
 
@@ -120,7 +121,7 @@ namespace Aviary.Macaw.Layering
             return filter;
         }
 
-        private Filter GetSepiaFilter()
+        private Sf.Filter GetSepiaFilter()
         {
             SepiaFilter filter = new SepiaFilter();
 
@@ -128,7 +129,7 @@ namespace Aviary.Macaw.Layering
             return filter;
         }
 
-        private Filter GetInversionFilter()
+        private Sf.Filter GetInversionFilter()
         {
             InversionFilter filter = new InversionFilter();
 
@@ -136,7 +137,7 @@ namespace Aviary.Macaw.Layering
             return filter;
         }
 
-        private Filter GetGrayscaleFilter()
+        private Sf.Filter GetGrayscaleFilter()
         {
             GrayscaleFilter filter = new GrayscaleFilter();
 
@@ -144,7 +145,7 @@ namespace Aviary.Macaw.Layering
             return filter;
         }
 
-        private Filter GetGaussianFilter()
+        private Sf.Filter GetGaussianFilter()
         {
             GaussianBlurFilter filter = new GaussianBlurFilter();
             filter.Radius = (float)(Value%20);
@@ -153,7 +154,7 @@ namespace Aviary.Macaw.Layering
             return filter;
         }
 
-        private Filter GetEmbossFilter()
+        private Sf.Filter GetEmbossFilter()
         {
             EmbossFilter filter = new EmbossFilter();
             filter.Amount = (float)Value;
@@ -162,7 +163,7 @@ namespace Aviary.Macaw.Layering
             return filter;
         }
 
-        private Filter GetContrastFilter()
+        private Sf.Filter GetContrastFilter()
         {
             ContrastAdjustmentFilter filter = new ContrastAdjustmentFilter();
             filter.Level = (int)Value;
@@ -171,7 +172,7 @@ namespace Aviary.Macaw.Layering
             return filter;
         }
 
-        private Filter GetColorTintFilter()
+        private Sf.Filter GetColorTintFilter()
         {
             ColorTintFilter filter = new ColorTintFilter();
             filter.Amount = (int)Value;
@@ -181,7 +182,7 @@ namespace Aviary.Macaw.Layering
             return filter;
         }
 
-        private Filter GetColorKeyFilter()
+        private Sf.Filter GetColorKeyFilter()
         {
             ColorKeyFilter filter = new ColorKeyFilter();
             filter.ColorTolerance = (byte)Value;
