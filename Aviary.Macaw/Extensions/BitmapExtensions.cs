@@ -8,6 +8,8 @@ using Sd = System.Drawing;
 using Si = System.Windows.Media.Imaging;
 using Sw = System.Windows.Interop;
 
+using Ai = Accord.Imaging;
+
 using Di = SoundInTheory.DynamicImage;
 using Ds = SoundInTheory.DynamicImage.Sources;
 using System.Windows;
@@ -57,6 +59,32 @@ namespace Aviary.Macaw
             }
 
             return output;
+        }
+
+        public static Sd.Bitmap ToAccordBitmap(this Sd.Bitmap input, Filter.ImageTypes imageType)
+        {
+            switch(imageType)
+            {
+                default:
+                    return (Sd.Bitmap)input.Clone();
+                case Filter.ImageTypes.GrayScale16bpp:
+                    return Ai.Image.Clone(input, Sd.Imaging.PixelFormat.Format16bppGrayScale);
+                case Filter.ImageTypes.GrayscaleBT709:
+                    return Ai.Filters.Grayscale.CommonAlgorithms.BT709.Apply((Sd.Bitmap)input.Clone());
+                case Filter.ImageTypes.GrayscaleRMY:
+                    return Ai.Filters.Grayscale.CommonAlgorithms.RMY.Apply((Sd.Bitmap)input.Clone());
+                case Filter.ImageTypes.GrayscaleY:
+                    return Ai.Filters.Grayscale.CommonAlgorithms.Y.Apply((Sd.Bitmap)input.Clone());
+                case Filter.ImageTypes.Rgb16bpp:
+                    return Ai.Image.Clone(input, Sd.Imaging.PixelFormat.Format16bppRgb555);
+                case Filter.ImageTypes.Rgb24bpp:
+                    return Ai.Image.Clone(input, Sd.Imaging.PixelFormat.Format24bppRgb);
+                case Filter.ImageTypes.Rgb32bpp:
+                    return Ai.Image.Clone(input, Sd.Imaging.PixelFormat.Format32bppRgb);
+                case Filter.ImageTypes.Rgb48bpp:
+                    return Ai.Image.Clone(input, Sd.Imaging.PixelFormat.Format48bppRgb);
+            }
+
         }
 
         #endregion

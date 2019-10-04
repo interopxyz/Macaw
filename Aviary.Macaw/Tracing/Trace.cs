@@ -18,7 +18,7 @@ namespace Aviary.Macaw
 
         #region Tracing
 
-        public static List<Rg.Polyline> TraceToRhino(this Bitmap input,bool optimize, TurnModes mode, int size, double tolerance, double threshold, double alpha)
+        public static List<Rg.Polyline> TraceToRhino(this Bitmap input,  double threshold, double alpha, double tolerance, int size, bool optimize, TurnModes mode)
         {
             List<List<Pt.Curve>> crvs = new List<List<Pt.Curve>>();
             List<Rg.Polyline> polylines = new List<Rg.Polyline>();
@@ -27,9 +27,9 @@ namespace Aviary.Macaw
 
             Pt.Potrace.Clear();
 
-            Pt.Potrace.curveoptimizing = optimize;
-
             Pt.Potrace.turnpolicy = (Pt.TurnPolicy)mode;
+
+            Pt.Potrace.curveoptimizing = optimize;
 
             Pt.Potrace.opttolerance = tolerance;
             Pt.Potrace.Treshold = threshold;
@@ -42,10 +42,10 @@ namespace Aviary.Macaw
             foreach (var crvList in crvs)
             {
                 Rg.Polyline polyline = new Rg.Polyline();
-                polyline.Add(crvList[0].A.ToRhPoint());
+                polyline.Add(crvList[0].A.ToRhPoint(height));
                 foreach (Pt.Curve curve in crvList)
                 {
-                    polyline.Add(curve.B.ToRhPoint());
+                    polyline.Add(curve.B.ToRhPoint(height));
                 }
                 polylines.Add(polyline);
             }
@@ -58,9 +58,9 @@ namespace Aviary.Macaw
             return new Sw.Point(input.x, input.y);
         }
 
-        public static Rg.Point3d ToRhPoint(this Pt.dPoint input)
+        public static Rg.Point3d ToRhPoint(this Pt.dPoint input, double height)
         {
-            return new Rg.Point3d(input.x, input.y,0);
+            return new Rg.Point3d(input.x, height-input.y,0);
         }
 
         #endregion
