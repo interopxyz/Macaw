@@ -8,31 +8,31 @@ using Accord.Imaging.Filters;
 
 namespace Aviary.Macaw.Filters
 {
-    public class FilterContrast : Filter
+    public class Brightness : Filter
     {
 
         #region members
 
-        protected int factor = 0;
+        protected int adjust = 0;
 
         #endregion
 
         #region constructors
 
-        public FilterContrast() : base()
+        public Brightness() : base()
         {
             SetFilter();
         }
 
-        public FilterContrast(int factor) : base()
+        public Brightness(int adjust) : base()
         {
-            this.factor = factor;
+            this.adjust = adjust;
             SetFilter();
         }
 
-        public FilterContrast(FilterContrast filter) : base(filter)
+        public Brightness(Brightness filter) : base(filter)
         {
-            this.factor = filter.factor;
+            this.adjust = filter.adjust;
             SetFilter();
         }
 
@@ -40,12 +40,12 @@ namespace Aviary.Macaw.Filters
 
         #region properties
 
-        public virtual int Factor
+        public virtual int Adjust
         {
-            get { return factor; }
+            get { return adjust; }
             set
             {
-                factor = value;
+                adjust = value;
                 SetFilter();
             }
         }
@@ -57,8 +57,8 @@ namespace Aviary.Macaw.Filters
         private void SetFilter()
         {
             ImageType = ImageTypes.Rgb32bpp;
-            ContrastCorrection newFilter = new ContrastCorrection();
-            newFilter.Factor = factor;
+            BrightnessCorrection newFilter = new BrightnessCorrection();
+            newFilter.AdjustValue = adjust;
             imageFilter = newFilter;
         }
 

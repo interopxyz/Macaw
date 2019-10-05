@@ -8,35 +8,34 @@ using Accord.Imaging.Filters;
 
 namespace Aviary.Macaw.Filters
 {
-    public class FilterGaussianBlur : Filter
+    public class Blur : Filter
     {
 
         #region members
 
-        protected double sigma = 0;
-        protected int size = 1;
+        protected int divisor = 0;
+        protected int threshold = 0;
 
         #endregion
 
         #region constructors
 
-        public FilterGaussianBlur() : base()
+        public Blur() : base()
         {
             SetFilter();
         }
 
-        public FilterGaussianBlur(double sigma, int size) : base()
+        public Blur(int divisor, int threshold) : base()
         {
-            this.sigma = sigma;
-            this.size = size;
+            this.divisor = divisor;
+            this.threshold = threshold;
             SetFilter();
         }
 
-        public FilterGaussianBlur(FilterGaussianBlur filter) : base(filter)
+        public Blur(Blur filter) : base(filter)
         {
-            this.sigma = filter.sigma;
-            this.size = filter.size;
-
+            this.divisor = filter.divisor;
+            this.threshold = filter.threshold;
             SetFilter();
         }
 
@@ -44,22 +43,22 @@ namespace Aviary.Macaw.Filters
 
         #region properties
 
-        public virtual double Sigma
+        public virtual int Divisor
         {
-            get { return sigma; }
+            get { return divisor; }
             set
             {
-                sigma = value;
+                divisor = value;
                 SetFilter();
             }
         }
 
-        public virtual int Size
+        public virtual int Threshold
         {
-            get { return size; }
+            get { return threshold; }
             set
             {
-                size = value;
+                threshold = value;
                 SetFilter();
             }
         }
@@ -71,9 +70,9 @@ namespace Aviary.Macaw.Filters
         private void SetFilter()
         {
             ImageType = ImageTypes.Rgb32bpp;
-            GaussianBlur newFilter = new GaussianBlur();
-            newFilter.Sigma = sigma;
-            newFilter.Size = size;
+            Accord.Imaging.Filters.Blur newFilter = new Accord.Imaging.Filters.Blur();
+            newFilter.Divisor = divisor;
+            newFilter.Threshold = threshold;
             imageFilter = newFilter;
         }
 

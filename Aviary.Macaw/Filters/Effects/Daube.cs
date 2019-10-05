@@ -8,31 +8,31 @@ using Accord.Imaging.Filters;
 
 namespace Aviary.Macaw.Filters
 {
-    public class FilterSaturation : Filter
+    public class Daube : Filter
     {
 
         #region members
 
-        protected double adjust = 0;
+        protected int size = 4;
 
         #endregion
 
         #region constructors
 
-        public FilterSaturation() : base()
+        public Daube() : base()
         {
             SetFilter();
         }
 
-        public FilterSaturation(double adjust) : base()
+        public Daube(int size) : base()
         {
-            this.adjust = adjust;
+            this.size = size;
             SetFilter();
         }
 
-        public FilterSaturation(FilterSaturation filter) : base(filter)
+        public Daube(Daube filter) : base(filter)
         {
-            this.adjust = filter.adjust;
+            this.size = filter.size;
             SetFilter();
         }
 
@@ -40,12 +40,12 @@ namespace Aviary.Macaw.Filters
 
         #region properties
 
-        public virtual double Adjust
+        public virtual int Size
         {
-            get { return adjust; }
+            get { return size; }
             set
             {
-                adjust = value;
+                size = value;
                 SetFilter();
             }
         }
@@ -57,8 +57,8 @@ namespace Aviary.Macaw.Filters
         private void SetFilter()
         {
             ImageType = ImageTypes.Rgb32bpp;
-            SaturationCorrection newFilter = new SaturationCorrection();
-            newFilter.AdjustValue = (float)adjust;
+            OilPainting newFilter = new OilPainting();
+            newFilter.BrushSize = size;
             imageFilter = newFilter;
         }
 

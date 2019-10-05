@@ -9,7 +9,7 @@ using Accord.Imaging.Filters;
 
 namespace Aviary.Macaw.Filters
 {
-    public class FilterHSLFiltering : Filter
+    public class HSLFilter : Filter
     {
 
         #region members
@@ -31,12 +31,12 @@ namespace Aviary.Macaw.Filters
 
         #region constructors
 
-        public FilterHSLFiltering() : base()
+        public HSLFilter() : base()
         {
             SetFilter();
         }
 
-        public FilterHSLFiltering(double hueLow, double hueHigh, double saturationLow, double saturationHigh, double luminanceLow, double luminanceHigh, bool outside, Color color) : base()
+        public HSLFilter(double hueLow, double hueHigh, double saturationLow, double saturationHigh, double luminanceLow, double luminanceHigh, bool outside, Color color) : base()
         {
             this.hueLow = hueLow;
             this.hueHigh = hueHigh;
@@ -52,7 +52,7 @@ namespace Aviary.Macaw.Filters
             SetFilter();
         }
 
-        public FilterHSLFiltering(FilterHSLFiltering filter) : base(filter)
+        public HSLFilter(HSLFilter filter) : base(filter)
         {
             this.hueLow = filter.hueLow;
             this.hueHigh = filter.hueHigh;

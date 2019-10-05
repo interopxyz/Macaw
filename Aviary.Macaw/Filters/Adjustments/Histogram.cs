@@ -8,23 +8,23 @@ using Accord.Imaging.Filters;
 
 namespace Aviary.Macaw.Filters
 {
-    public class FilterInvert : Filter
+    public class Histogram : Filter
     {
 
         #region members
-
+        
 
 
         #endregion
 
         #region constructors
 
-        public FilterInvert() : base()
+        public Histogram() : base()
         {
             SetFilter();
         }
 
-        public FilterInvert(FilterInvert filter) : base(filter)
+        public Histogram(Histogram filter) : base(filter)
         {
             SetFilter();
         }
@@ -41,8 +41,8 @@ namespace Aviary.Macaw.Filters
 
         private void SetFilter()
         {
-            ImageType = ImageTypes.Rgb24bpp;
-            Invert newFilter = new Invert();
+            ImageType = ImageTypes.Rgb32bpp;
+            HistogramEqualization newFilter = new HistogramEqualization();
             imageFilter = newFilter;
         }
 

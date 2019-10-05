@@ -30,7 +30,7 @@ namespace Aviary.Macaw
         public Image(Image image)
         {
             this.Bitmap = image.bitmap;
-            foreach(Filter filter in image.Filters)
+            foreach (Filter filter in image.Filters)
             {
                 this.Filters.Add(new Filter(filter));
             }
@@ -39,6 +39,12 @@ namespace Aviary.Macaw
         public Image(Bitmap bitmap)
         {
             this.Bitmap = bitmap;
+        }
+
+        public Image(Bitmap bitmap, Filter filter)
+        {
+            this.Bitmap = bitmap;
+            this.Filters.Add(new Filter(filter));
         }
 
         #endregion
@@ -60,7 +66,7 @@ namespace Aviary.Macaw
             Filter.ImageTypes imageType = Filter.ImageTypes.Rgb48bpp;
 
             Af.FiltersSequence sequence = new Af.FiltersSequence();
-            foreach(Filter filter in Filters)
+            foreach (Filter filter in Filters)
             {
                 sequence.Add(filter.FilterObject);
                 if (filter.ImageType < imageType) imageType = filter.ImageType;

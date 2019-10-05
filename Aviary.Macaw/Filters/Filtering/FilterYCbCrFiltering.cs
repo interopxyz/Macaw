@@ -9,7 +9,7 @@ using Accord.Imaging.Filters;
 
 namespace Aviary.Macaw.Filters
 {
-    public class FilterYCbCrFiltering : Filter
+    public class YCbCrFilter : Filter
     {
 
         #region members
@@ -31,12 +31,12 @@ namespace Aviary.Macaw.Filters
 
         #region constructors
 
-        public FilterYCbCrFiltering() : base()
+        public YCbCrFilter() : base()
         {
             SetFilter();
         }
 
-        public FilterYCbCrFiltering(double yLow, double yHigh, double blueLow, double blueHigh, double redLow, double redHigh, bool outside, Color color) : base()
+        public YCbCrFilter(double yLow, double yHigh, double blueLow, double blueHigh, double redLow, double redHigh, bool outside, Color color) : base()
         {
             this.yLow = yLow;
             this.yHigh = yHigh;
@@ -52,7 +52,7 @@ namespace Aviary.Macaw.Filters
             SetFilter();
         }
 
-        public FilterYCbCrFiltering(FilterYCbCrFiltering filter) : base(filter)
+        public YCbCrFilter(YCbCrFilter filter) : base(filter)
         {
             this.yLow = filter.yLow;
             this.yHigh = filter.yHigh;

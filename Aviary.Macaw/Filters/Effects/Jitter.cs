@@ -8,7 +8,7 @@ using Accord.Imaging.Filters;
 
 namespace Aviary.Macaw.Filters
 {
-    public class FilterJitter : Filter
+    public class Jitter : Filter
     {
 
         #region members
@@ -19,18 +19,18 @@ namespace Aviary.Macaw.Filters
 
         #region constructors
 
-        public FilterJitter() : base()
+        public Jitter() : base()
         {
             SetFilter();
         }
 
-        public FilterJitter(int radius) : base()
+        public Jitter(int radius) : base()
         {
             this.radius = radius;
             SetFilter();
         }
 
-        public FilterJitter(FilterJitter filter) : base(filter)
+        public Jitter(Jitter filter) : base(filter)
         {
             this.radius = filter.radius;
             SetFilter();
@@ -57,7 +57,7 @@ namespace Aviary.Macaw.Filters
         private void SetFilter()
         {
             ImageType = ImageTypes.Rgb32bpp;
-            Jitter newFilter = new Jitter();
+            Accord.Imaging.Filters.Jitter newFilter = new Accord.Imaging.Filters.Jitter();
             newFilter.Radius = radius;
             imageFilter = newFilter;
         }

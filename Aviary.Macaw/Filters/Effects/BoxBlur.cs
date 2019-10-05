@@ -8,7 +8,7 @@ using Accord.Imaging.Filters;
 
 namespace Aviary.Macaw.Filters
 {
-    public class FilterBoxBlur : Filter
+    public class BoxBlur : Filter
     {
 
         #region members
@@ -20,19 +20,19 @@ namespace Aviary.Macaw.Filters
 
         #region constructors
 
-        public FilterBoxBlur() : base()
+        public BoxBlur() : base()
         {
             SetFilter();
         }
 
-        public FilterBoxBlur(int horizontal, int vertical) : base()
+        public BoxBlur(int horizontal, int vertical) : base()
         {
             this.horizontal = horizontal;
             this.vertical = vertical;
             SetFilter();
         }
 
-        public FilterBoxBlur(FilterBoxBlur filter) : base(filter)
+        public BoxBlur(BoxBlur filter) : base(filter)
         {
             this.horizontal = filter.horizontal;
             this.vertical = filter.vertical;

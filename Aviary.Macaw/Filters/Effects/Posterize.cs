@@ -8,7 +8,7 @@ using Accord.Imaging.Filters;
 
 namespace Aviary.Macaw.Filters
 {
-    public class FilterPosterize : Filter
+    public class Posterize : Filter
     {
 
         #region members
@@ -20,19 +20,19 @@ namespace Aviary.Macaw.Filters
 
         #region constructors
 
-        public FilterPosterize() : base()
+        public Posterize() : base()
         {
             SetFilter();
         }
 
-        public FilterPosterize(int type, int interval) : base()
+        public Posterize(int type, int interval) : base()
         {
             this.type = type;
             this.interval = interval;
             SetFilter();
         }
 
-        public FilterPosterize(FilterPosterize filter) : base(filter)
+        public Posterize(Posterize filter) : base(filter)
         {
             this.type = filter.type;
             this.interval = filter.interval;

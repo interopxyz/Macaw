@@ -8,24 +8,31 @@ using Accord.Imaging.Filters;
 
 namespace Aviary.Macaw.Filters
 {
-    public class FilterAdditive : Filter
+    public class Gamma : Filter
     {
 
         #region members
-        
+
+        protected double gamma = 0;
 
         #endregion
 
         #region constructors
 
-        public FilterAdditive() : base()
+        public Gamma() : base()
         {
             SetFilter();
         }
-        
 
-        public FilterAdditive(FilterAdditive filter) : base(filter)
+        public Gamma(double gamma) : base()
         {
+            this.gamma = gamma;
+            SetFilter();
+        }
+
+        public Gamma(Gamma filter) : base(filter)
+        {
+            this.gamma = filter.gamma;
             SetFilter();
         }
 
@@ -33,7 +40,15 @@ namespace Aviary.Macaw.Filters
 
         #region properties
 
-
+        public virtual double GammaValue
+        {
+            get { return gamma; }
+            set
+            {
+                gamma = value;
+                SetFilter();
+            }
+        }
 
         #endregion
 
@@ -42,7 +57,8 @@ namespace Aviary.Macaw.Filters
         private void SetFilter()
         {
             ImageType = ImageTypes.Rgb24bpp;
-            AdditiveNoise newFilter = new AdditiveNoise();
+            GammaCorrection newFilter = new GammaCorrection();
+            newFilter.Gamma = gamma;
             imageFilter = newFilter;
         }
 

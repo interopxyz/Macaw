@@ -8,7 +8,7 @@ using Accord.Imaging.Filters;
 
 namespace Aviary.Macaw.Filters
 {
-    public class FilterRipple : Filter
+    public class Ripple : Filter
     {
 
         #region members
@@ -22,12 +22,12 @@ namespace Aviary.Macaw.Filters
 
         #region constructors
 
-        public FilterRipple() : base()
+        public Ripple() : base()
         {
             SetFilter();
         }
 
-        public FilterRipple(int horizontalAmplitude, int horizontalCount, int verticalAmplitude, int verticalCount) : base()
+        public Ripple(int horizontalAmplitude, int horizontalCount, int verticalAmplitude, int verticalCount) : base()
         {
             this.horizontalAmplitude = horizontalAmplitude;
             this.horizontalCount = horizontalCount;
@@ -36,7 +36,7 @@ namespace Aviary.Macaw.Filters
             SetFilter();
         }
 
-        public FilterRipple(FilterRipple filter) : base(filter)
+        public Ripple(Ripple filter) : base(filter)
         {
             this.horizontalAmplitude = filter.horizontalAmplitude;
             this.horizontalCount = filter.horizontalCount;

@@ -8,31 +8,31 @@ using Accord.Imaging.Filters;
 
 namespace Aviary.Macaw.Filters
 {
-    public class FilterDaube : Filter
+    public class SaltPepper : Filter
     {
 
         #region members
 
-        protected int size = 4;
+        protected double noise = 0;
 
         #endregion
 
         #region constructors
 
-        public FilterDaube() : base()
+        public SaltPepper() : base()
         {
             SetFilter();
         }
 
-        public FilterDaube(int size) : base()
+        public SaltPepper(int noise) : base()
         {
-            this.size = size;
+            this.noise = noise;
             SetFilter();
         }
 
-        public FilterDaube(FilterDaube filter) : base(filter)
+        public SaltPepper(SaltPepper filter) : base(filter)
         {
-            this.size = filter.size;
+            this.noise = filter.noise;
             SetFilter();
         }
 
@@ -40,12 +40,12 @@ namespace Aviary.Macaw.Filters
 
         #region properties
 
-        public virtual int Size
+        public virtual double Noise
         {
-            get { return size; }
+            get { return noise; }
             set
             {
-                size = value;
+                noise = value;
                 SetFilter();
             }
         }
@@ -57,8 +57,8 @@ namespace Aviary.Macaw.Filters
         private void SetFilter()
         {
             ImageType = ImageTypes.Rgb32bpp;
-            OilPainting newFilter = new OilPainting();
-            newFilter.BrushSize = size;
+            SaltAndPepperNoise newFilter = new SaltAndPepperNoise();
+            newFilter.NoiseAmount = noise;
             imageFilter = newFilter;
         }
 

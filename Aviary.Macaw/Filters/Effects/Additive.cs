@@ -8,23 +8,23 @@ using Accord.Imaging.Filters;
 
 namespace Aviary.Macaw.Filters
 {
-    public class FilterGrayWorld : Filter
+    public class Additive : Filter
     {
 
         #region members
-
-
+        
 
         #endregion
 
         #region constructors
 
-        public FilterGrayWorld() : base()
+        public Additive() : base()
         {
             SetFilter();
         }
+        
 
-        public FilterGrayWorld(FilterGrayWorld filter) : base(filter)
+        public Additive(Additive filter) : base(filter)
         {
             SetFilter();
         }
@@ -32,7 +32,7 @@ namespace Aviary.Macaw.Filters
         #endregion
 
         #region properties
-        
+
 
 
         #endregion
@@ -41,8 +41,8 @@ namespace Aviary.Macaw.Filters
 
         private void SetFilter()
         {
-            ImageType = ImageTypes.Rgb32bpp;
-            GrayWorld newFilter = new GrayWorld();
+            ImageType = ImageTypes.Rgb24bpp;
+            AdditiveNoise newFilter = new AdditiveNoise();
             imageFilter = newFilter;
         }
 

@@ -8,32 +8,47 @@ using Accord.Imaging.Filters;
 
 namespace Aviary.Macaw.Filters
 {
-    public class FilterHistogram : Filter
+    public class Hue : Filter
     {
 
         #region members
-        
 
+        protected int hue = 0;
 
         #endregion
 
         #region constructors
 
-        public FilterHistogram() : base()
+        public Hue() : base()
         {
             SetFilter();
         }
 
-        public FilterHistogram(FilterHistogram filter) : base(filter)
+        public Hue(int hue) : base()
         {
+            this.hue = hue;
+            SetFilter();
+        }
+
+        public Hue(Hue filter) : base(filter)
+        {
+            this.hue = filter.hue;
             SetFilter();
         }
 
         #endregion
 
         #region properties
-        
 
+        public virtual int Factor
+        {
+            get { return hue; }
+            set
+            {
+                hue = value;
+                SetFilter();
+            }
+        }
 
         #endregion
 
@@ -42,7 +57,8 @@ namespace Aviary.Macaw.Filters
         private void SetFilter()
         {
             ImageType = ImageTypes.Rgb32bpp;
-            HistogramEqualization newFilter = new HistogramEqualization();
+            HueModifier newFilter = new HueModifier();
+            newFilter.Hue = hue;
             imageFilter = newFilter;
         }
 

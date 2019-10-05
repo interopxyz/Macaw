@@ -8,31 +8,31 @@ using Accord.Imaging.Filters;
 
 namespace Aviary.Macaw.Filters
 {
-    public class FilterHue : Filter
+    public class Saturation : Filter
     {
 
         #region members
 
-        protected int hue = 0;
+        protected double adjust = 0;
 
         #endregion
 
         #region constructors
 
-        public FilterHue() : base()
+        public Saturation() : base()
         {
             SetFilter();
         }
 
-        public FilterHue(int hue) : base()
+        public Saturation(double adjust) : base()
         {
-            this.hue = hue;
+            this.adjust = adjust;
             SetFilter();
         }
 
-        public FilterHue(FilterHue filter) : base(filter)
+        public Saturation(Saturation filter) : base(filter)
         {
-            this.hue = filter.hue;
+            this.adjust = filter.adjust;
             SetFilter();
         }
 
@@ -40,12 +40,12 @@ namespace Aviary.Macaw.Filters
 
         #region properties
 
-        public virtual int Factor
+        public virtual double Adjust
         {
-            get { return hue; }
+            get { return adjust; }
             set
             {
-                hue = value;
+                adjust = value;
                 SetFilter();
             }
         }
@@ -57,8 +57,8 @@ namespace Aviary.Macaw.Filters
         private void SetFilter()
         {
             ImageType = ImageTypes.Rgb32bpp;
-            HueModifier newFilter = new HueModifier();
-            newFilter.Hue = hue;
+            SaturationCorrection newFilter = new SaturationCorrection();
+            newFilter.AdjustValue = (float)adjust;
             imageFilter = newFilter;
         }
 

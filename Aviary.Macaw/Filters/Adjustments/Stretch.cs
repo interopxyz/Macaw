@@ -8,7 +8,7 @@ using Accord.Imaging.Filters;
 
 namespace Aviary.Macaw.Filters
 {
-    public class FilterStretch : Filter
+    public class Stretch : Filter
     {
 
         #region members
@@ -19,12 +19,12 @@ namespace Aviary.Macaw.Filters
 
         #region constructors
 
-        public FilterStretch() : base()
+        public Stretch() : base()
         {
             SetFilter();
         }
 
-        public FilterStretch(FilterStretch filter) : base(filter)
+        public Stretch(Stretch filter) : base(filter)
         {
             SetFilter();
         }

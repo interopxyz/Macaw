@@ -8,31 +8,31 @@ using Accord.Imaging.Filters;
 
 namespace Aviary.Macaw.Filters
 {
-    public class FilterSaltPepper : Filter
+    public class Kuwahara : Filter
     {
 
         #region members
 
-        protected double noise = 0;
+        protected int size = 0;
 
         #endregion
 
         #region constructors
 
-        public FilterSaltPepper() : base()
+        public Kuwahara() : base()
         {
             SetFilter();
         }
 
-        public FilterSaltPepper(int noise) : base()
+        public Kuwahara(int size) : base()
         {
-            this.noise = noise;
+            this.size = size;
             SetFilter();
         }
 
-        public FilterSaltPepper(FilterSaltPepper filter) : base(filter)
+        public Kuwahara(Kuwahara filter) : base(filter)
         {
-            this.noise = filter.noise;
+            this.size = filter.size;
             SetFilter();
         }
 
@@ -40,12 +40,12 @@ namespace Aviary.Macaw.Filters
 
         #region properties
 
-        public virtual double Noise
+        public virtual int Size
         {
-            get { return noise; }
+            get { return size; }
             set
             {
-                noise = value;
+                size = value;
                 SetFilter();
             }
         }
@@ -57,8 +57,8 @@ namespace Aviary.Macaw.Filters
         private void SetFilter()
         {
             ImageType = ImageTypes.Rgb32bpp;
-            SaltAndPepperNoise newFilter = new SaltAndPepperNoise();
-            newFilter.NoiseAmount = noise;
+            Accord.Imaging.Filters.Kuwahara newFilter = new Accord.Imaging.Filters.Kuwahara();
+            newFilter.Size = size;
             imageFilter = newFilter;
         }
 

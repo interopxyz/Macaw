@@ -8,7 +8,7 @@ using Accord.Imaging.Filters;
 
 namespace Aviary.Macaw.Filters
 {
-    public class FilterPixelate : Filter
+    public class Pixelate : Filter
     {
 
         #region members
@@ -20,19 +20,19 @@ namespace Aviary.Macaw.Filters
 
         #region constructors
 
-        public FilterPixelate() : base()
+        public Pixelate() : base()
         {
             SetFilter();
         }
 
-        public FilterPixelate(int width, int height) : base()
+        public Pixelate(int width, int height) : base()
         {
             this.width = width;
             this.height = height;
             SetFilter();
         }
 
-        public FilterPixelate(FilterPixelate filter) : base(filter)
+        public Pixelate(Pixelate filter) : base(filter)
         {
             this.width = filter.width;
             this.height = filter.height;
