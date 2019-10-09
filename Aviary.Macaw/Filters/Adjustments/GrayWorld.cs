@@ -41,7 +41,7 @@ namespace Aviary.Macaw.Filters.Adjustments
 
         private void SetFilter()
         {
-            ImageType = ImageTypes.Rgb32bpp;
+            ImageType = ImageTypes.Rgb24bpp;
             Af.GrayWorld newFilter = new Af.GrayWorld();
             imageFilter = newFilter;
         }

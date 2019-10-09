@@ -56,7 +56,7 @@ namespace Aviary.Macaw.Filters.Effects
 
         private void SetFilter()
         {
-            ImageType = ImageTypes.Rgb32bpp;
+            ImageType = ImageTypes.GrayscaleBT709;
             Af.Kuwahara newFilter = new Af.Kuwahara();
             newFilter.Size = size;
             imageFilter = newFilter;

@@ -29,7 +29,7 @@ namespace Aviary.Macaw.Filters.Figures
             SetFilter();
         }
 
-        public BlobsFilter(Domain width, Domain height, int minHeight, int maxHeight, bool coupled) : base()
+        public BlobsFilter(Domain width, Domain height, bool coupled) : base()
         {
             this.width = width;
             this.height= height;

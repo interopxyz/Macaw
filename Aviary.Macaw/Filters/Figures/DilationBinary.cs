@@ -42,7 +42,7 @@ namespace Aviary.Macaw.Filters.Figures
 
         private void SetFilter()
         {
-            ImageType = ImageTypes.Rgb24bpp;
+            ImageType = ImageTypes.GrayscaleBT709;
             Af.BinaryDilation3x3 newFilter = new Af.BinaryDilation3x3();
             imageFilter = newFilter;
         }

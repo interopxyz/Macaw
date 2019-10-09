@@ -86,7 +86,7 @@ namespace Aviary.Macaw.Filters.Figures
 
         private void SetFilter()
         {
-            ImageType = ImageTypes.Rgb24bpp;
+            ImageType = ImageTypes.GrayscaleBT709;
             Af.FillHoles newFilter = new Af.FillHoles();
             newFilter.MaxHoleWidth = width;
             newFilter.MaxHoleHeight = height;

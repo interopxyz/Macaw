@@ -72,7 +72,7 @@ namespace Aviary.Macaw.Filters.Figures
 
         private void SetFilter()
         {
-            ImageType = ImageTypes.Rgb24bpp;
+            ImageType = ImageTypes.GrayscaleBT709;
             Af.HorizontalRunLengthSmoothing newFilter = new Af.HorizontalRunLengthSmoothing();
             newFilter.MaxGapSize = gap;
             newFilter.ProcessGapsWithImageBorders = borders;

@@ -40,7 +40,7 @@ namespace Aviary.Macaw.Filters.Adjustments
 
         private void SetFilter()
         {
-            ImageType = ImageTypes.Rgb32bpp;
+            ImageType = ImageTypes.Rgb24bpp;
             Af.RGChromacity newFilter = new Af.RGChromacity();
             imageFilter = newFilter;
         }
