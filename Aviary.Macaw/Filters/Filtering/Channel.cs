@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Accord.Imaging.Filters;
+using Af = Accord.Imaging.Filters;
 
-namespace Aviary.Macaw.Filters
+namespace Aviary.Macaw.Filters.Filtering
 {
-    public class ChannelFilter : Filter
+    public class Channel : Filter
     {
 
         #region members
@@ -29,12 +29,12 @@ namespace Aviary.Macaw.Filters
 
         #region constructors
 
-        public ChannelFilter() : base()
+        public Channel() : base()
         {
             SetFilter();
         }
 
-        public ChannelFilter(double redLow, double redHigh, double greenLow, double greenHigh, double blueLow, double blueHigh, bool outside) : base()
+        public Channel(double redLow, double redHigh, double greenLow, double greenHigh, double blueLow, double blueHigh, bool outside) : base()
         {
 
             this.redLow = redLow;
@@ -49,7 +49,7 @@ namespace Aviary.Macaw.Filters
             SetFilter();
         }
 
-        public ChannelFilter(ChannelFilter filter) : base(filter)
+        public Channel(Channel filter) : base(filter)
         {
 
             this.redLow = filter.redLow;
@@ -145,7 +145,7 @@ namespace Aviary.Macaw.Filters
         private void SetFilter()
         {
             ImageType = ImageTypes.Rgb32bpp;
-            ChannelFiltering newFilter = new ChannelFiltering();
+            Af.ChannelFiltering newFilter = new Af.ChannelFiltering();
 
             newFilter.Red = new Accord.IntRange((int)(255.0 * redLow), (int)(255.0 * redHigh));
             newFilter.Green = new Accord.IntRange((int)(255.0 * greenLow), (int)(255.0 * greenHigh));

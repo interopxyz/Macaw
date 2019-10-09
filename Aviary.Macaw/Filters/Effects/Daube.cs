@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Accord.Imaging.Filters;
+using Af = Accord.Imaging.Filters;
 
-namespace Aviary.Macaw.Filters
+namespace Aviary.Macaw.Filters.Effects
 {
     public class Daube : Filter
     {
@@ -57,7 +57,7 @@ namespace Aviary.Macaw.Filters
         private void SetFilter()
         {
             ImageType = ImageTypes.Rgb32bpp;
-            OilPainting newFilter = new OilPainting();
+            Af.OilPainting newFilter = new Af.OilPainting();
             newFilter.BrushSize = size;
             imageFilter = newFilter;
         }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Accord.Imaging.Filters;
+using Af = Accord.Imaging.Filters;
 
-namespace Aviary.Macaw.Filters
+namespace Aviary.Macaw.Filters.Adjustments
 {
     public class WhitePatch : Filter
     {
@@ -42,7 +42,7 @@ namespace Aviary.Macaw.Filters
         private void SetFilter()
         {
             ImageType = ImageTypes.None;
-            Accord.Imaging.Filters.WhitePatch newFilter = new Accord.Imaging.Filters.WhitePatch();
+            Af.WhitePatch newFilter = new Af.WhitePatch();
             imageFilter = newFilter;
         }
 

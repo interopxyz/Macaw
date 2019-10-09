@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Accord.Imaging.Filters;
+using Af = Accord.Imaging.Filters;
 
-namespace Aviary.Macaw.Filters
+namespace Aviary.Macaw.Filters.Adjustments
 {
     public class Gamma : Filter
     {
@@ -57,7 +57,7 @@ namespace Aviary.Macaw.Filters
         private void SetFilter()
         {
             ImageType = ImageTypes.Rgb24bpp;
-            GammaCorrection newFilter = new GammaCorrection();
+            Af.GammaCorrection newFilter = new Af.GammaCorrection();
             newFilter.Gamma = gamma;
             imageFilter = newFilter;
         }

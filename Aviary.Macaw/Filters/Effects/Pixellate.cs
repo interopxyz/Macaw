@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Accord.Imaging.Filters;
+using Af = Accord.Imaging.Filters;
 
-namespace Aviary.Macaw.Filters
+namespace Aviary.Macaw.Filters.Effects
 {
-    public class Pixelate : Filter
+    public class Pixellate : Filter
     {
 
         #region members
@@ -20,19 +20,19 @@ namespace Aviary.Macaw.Filters
 
         #region constructors
 
-        public Pixelate() : base()
+        public Pixellate() : base()
         {
             SetFilter();
         }
 
-        public Pixelate(int width, int height) : base()
+        public Pixellate(int width, int height) : base()
         {
             this.width = width;
             this.height = height;
             SetFilter();
         }
 
-        public Pixelate(Pixelate filter) : base(filter)
+        public Pixellate(Pixellate filter) : base(filter)
         {
             this.width = filter.width;
             this.height = filter.height;
@@ -70,7 +70,7 @@ namespace Aviary.Macaw.Filters
         private void SetFilter()
         {
             ImageType = ImageTypes.Rgb24bpp;
-            Pixellate newFilter = new Pixellate();
+            Af.Pixellate newFilter = new Af.Pixellate();
             newFilter.PixelWidth = width;
             newFilter.PixelHeight = height;
             imageFilter = newFilter;

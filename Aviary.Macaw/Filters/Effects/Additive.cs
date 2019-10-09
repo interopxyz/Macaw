@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Accord.Imaging.Filters;
+using Af = Accord.Imaging.Filters;
 
-namespace Aviary.Macaw.Filters
+namespace Aviary.Macaw.Filters.Effects
 {
     public class Additive : Filter
     {
@@ -42,7 +42,7 @@ namespace Aviary.Macaw.Filters
         private void SetFilter()
         {
             ImageType = ImageTypes.Rgb24bpp;
-            AdditiveNoise newFilter = new AdditiveNoise();
+            Af.AdditiveNoise newFilter = new Af.AdditiveNoise();
             imageFilter = newFilter;
         }
 

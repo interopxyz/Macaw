@@ -81,8 +81,12 @@ namespace Aviary.Macaw
                     return Ai.Image.Clone(input, Sd.Imaging.PixelFormat.Format24bppRgb);
                 case Filter.ImageTypes.Rgb32bpp:
                     return Ai.Image.Clone(input, Sd.Imaging.PixelFormat.Format32bppRgb);
+                case Filter.ImageTypes.ARgb32bpp:
+                    return Ai.Image.Clone(input, Sd.Imaging.PixelFormat.Format32bppArgb);
                 case Filter.ImageTypes.Rgb48bpp:
                     return Ai.Image.Clone(input, Sd.Imaging.PixelFormat.Format48bppRgb);
+                case Filter.ImageTypes.Rgb64bpp:
+                    return Ai.Image.Clone(input, Sd.Imaging.PixelFormat.Format64bppArgb);
             }
 
         }

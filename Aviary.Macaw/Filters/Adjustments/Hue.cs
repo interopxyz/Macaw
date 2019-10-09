@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Accord.Imaging.Filters;
+using Af = Accord.Imaging.Filters;
 
-namespace Aviary.Macaw.Filters
+namespace Aviary.Macaw.Filters.Adjustments
 {
     public class Hue : Filter
     {
@@ -57,7 +57,7 @@ namespace Aviary.Macaw.Filters
         private void SetFilter()
         {
             ImageType = ImageTypes.Rgb32bpp;
-            HueModifier newFilter = new HueModifier();
+            Af.HueModifier newFilter = new Af.HueModifier();
             newFilter.Hue = hue;
             imageFilter = newFilter;
         }

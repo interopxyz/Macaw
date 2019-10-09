@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Accord.Imaging;
-using Accord.Imaging.Filters;
+using Af = Accord.Imaging.Filters;
 
-namespace Aviary.Macaw.Filters
+namespace Aviary.Macaw.Filters.Filtering
 {
-    public class HSLFilter : Filter
+    public class HSL : Filter
     {
 
         #region members
@@ -31,12 +31,12 @@ namespace Aviary.Macaw.Filters
 
         #region constructors
 
-        public HSLFilter() : base()
+        public HSL() : base()
         {
             SetFilter();
         }
 
-        public HSLFilter(double hueLow, double hueHigh, double saturationLow, double saturationHigh, double luminanceLow, double luminanceHigh, bool outside, Color color) : base()
+        public HSL(double hueLow, double hueHigh, double saturationLow, double saturationHigh, double luminanceLow, double luminanceHigh, bool outside, Color color) : base()
         {
             this.hueLow = hueLow;
             this.hueHigh = hueHigh;
@@ -52,7 +52,7 @@ namespace Aviary.Macaw.Filters
             SetFilter();
         }
 
-        public HSLFilter(HSLFilter filter) : base(filter)
+        public HSL(HSL filter) : base(filter)
         {
             this.hueLow = filter.hueLow;
             this.hueHigh = filter.hueHigh;
@@ -159,9 +159,9 @@ namespace Aviary.Macaw.Filters
         private void SetFilter()
         {
             ImageType = ImageTypes.Rgb32bpp;
-            HSLFiltering newFilter = new HSLFiltering();
+            Af.HSLFiltering newFilter = new Af.HSLFiltering();
 
-            newFilter.FillColor = HSL.FromRGB(new Accord.Imaging.RGB(color));
+            newFilter.FillColor = Accord.Imaging.HSL.FromRGB(new Accord.Imaging.RGB(color));
 
             newFilter.Hue = new Accord.IntRange((int)(359.0*hueLow), (int)(359.0 * hueHigh));
             newFilter.Saturation = new Accord.Range((float)saturationLow, (float)saturationHigh);

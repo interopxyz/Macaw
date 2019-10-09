@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Accord.Imaging.Filters;
+using Af = Accord.Imaging.Filters;
 
-namespace Aviary.Macaw.Filters
+namespace Aviary.Macaw.Filters.Effects
 {
     public class Posterize : Filter
     {
@@ -70,8 +70,8 @@ namespace Aviary.Macaw.Filters
         private void SetFilter()
         {
             ImageType = ImageTypes.Rgb32bpp;
-            SimplePosterization newFilter = new SimplePosterization();
-            newFilter.FillingType = (SimplePosterization.PosterizationFillingType) type;
+            Af.SimplePosterization newFilter = new Af.SimplePosterization();
+            newFilter.FillingType = (Af.SimplePosterization.PosterizationFillingType) type;
             newFilter.PosterizationInterval = (byte)interval;
             imageFilter = newFilter;
         }

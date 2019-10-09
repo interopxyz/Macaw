@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Accord.Imaging.Filters;
+using Af = Accord.Imaging.Filters;
 
-namespace Aviary.Macaw.Filters
+namespace Aviary.Macaw.Filters.Effects
 {
     public class Blur : Filter
     {
@@ -70,7 +70,7 @@ namespace Aviary.Macaw.Filters
         private void SetFilter()
         {
             ImageType = ImageTypes.Rgb32bpp;
-            Accord.Imaging.Filters.Blur newFilter = new Accord.Imaging.Filters.Blur();
+            Af.Blur newFilter = new Af.Blur();
             newFilter.Divisor = divisor;
             newFilter.Threshold = threshold;
             imageFilter = newFilter;

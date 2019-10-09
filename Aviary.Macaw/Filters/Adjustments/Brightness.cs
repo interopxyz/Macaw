@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Accord.Imaging.Filters;
+using Af=Accord.Imaging.Filters;
 
-namespace Aviary.Macaw.Filters
+namespace Aviary.Macaw.Filters.Adjustments
 {
     public class Brightness : Filter
     {
@@ -57,7 +57,7 @@ namespace Aviary.Macaw.Filters
         private void SetFilter()
         {
             ImageType = ImageTypes.Rgb32bpp;
-            BrightnessCorrection newFilter = new BrightnessCorrection();
+            Af.BrightnessCorrection newFilter = new Af.BrightnessCorrection();
             newFilter.AdjustValue = adjust;
             imageFilter = newFilter;
         }

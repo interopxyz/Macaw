@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Accord.Imaging.Filters;
+using Af = Accord.Imaging.Filters;
 
-namespace Aviary.Macaw.Filters
+namespace Aviary.Macaw.Filters.Filtering
 {
     public class ColorFilter : Filter
     {
@@ -159,7 +159,7 @@ namespace Aviary.Macaw.Filters
         private void SetFilter()
         {
             ImageType = ImageTypes.Rgb32bpp;
-            ColorFiltering newFilter = new ColorFiltering();
+            Af.ColorFiltering newFilter = new Af.ColorFiltering();
 
             newFilter.FillColor = new Accord.Imaging.RGB(color);
 

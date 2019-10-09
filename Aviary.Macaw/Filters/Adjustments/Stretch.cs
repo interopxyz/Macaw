@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Accord.Imaging.Filters;
+using Af = Accord.Imaging.Filters;
 
-namespace Aviary.Macaw.Filters
+namespace Aviary.Macaw.Filters.Adjustments
 {
     public class Stretch : Filter
     {
@@ -42,7 +42,7 @@ namespace Aviary.Macaw.Filters
         private void SetFilter()
         {
             ImageType = ImageTypes.Rgb24bpp;
-            ContrastStretch newFilter = new ContrastStretch();
+            Af.ContrastStretch newFilter = new Af.ContrastStretch();
             imageFilter = newFilter;
         }
 

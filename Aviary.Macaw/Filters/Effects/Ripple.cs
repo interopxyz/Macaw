@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Accord.Imaging.Filters;
+using Af = Accord.Imaging.Filters;
 
-namespace Aviary.Macaw.Filters
+namespace Aviary.Macaw.Filters.Effects
 {
     public class Ripple : Filter
     {
@@ -96,7 +96,7 @@ namespace Aviary.Macaw.Filters
         private void SetFilter()
         {
             ImageType = ImageTypes.Rgb32bpp;
-            WaterWave newFilter = new WaterWave();
+            Af.WaterWave newFilter = new Af.WaterWave();
             newFilter.HorizontalWavesAmplitude = horizontalAmplitude;
             newFilter.HorizontalWavesCount = horizontalCount;
             newFilter.VerticalWavesAmplitude = verticalAmplitude;

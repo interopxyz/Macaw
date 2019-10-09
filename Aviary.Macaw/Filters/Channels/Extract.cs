@@ -6,35 +6,35 @@ using System.Threading.Tasks;
 
 using Af = Accord.Imaging.Filters;
 
-namespace Aviary.Macaw.Filters
+namespace Aviary.Macaw.Filters.Channels
 {
-    public class ExtractChannel : Filter
+    public class Extract : Filter
     {
 
         #region members
 
-        public enum ChannelModes { Alpha=3, Red=2, Green=1, Blue = 0, Cb=5, Cr=6, Y=4};
-        protected ChannelModes channelMode = ChannelModes.Alpha;
+        public enum Modes { Alpha=3, Red=2, Green=1, Blue = 0, Cb=5, Cr=6, Y=4};
+        protected Modes mode = Modes.Alpha;
         
 
         #endregion
 
         #region constructors
 
-        public ExtractChannel() : base()
+        public Extract() : base()
         {
             SetFilter();
         }
 
-        public ExtractChannel(ChannelModes channelMode) : base()
+        public Extract(Modes mode) : base()
         {
-            this.channelMode = channelMode;
+            this.mode = mode;
             SetFilter();
         }
 
-        public ExtractChannel(ExtractChannel filter) : base(filter)
+        public Extract(Extract filter) : base(filter)
         {
-            this.channelMode = filter.channelMode;
+            this.mode = filter.mode;
             SetFilter();
         }
 
@@ -42,12 +42,12 @@ namespace Aviary.Macaw.Filters
 
         #region properties
 
-        public virtual ChannelModes ChannelMode
+        public virtual Modes ChannelMode
         {
-            get { return channelMode; }
+            get { return mode; }
             set
             {
-                channelMode = value;
+                mode = value;
                 SetFilter();
             }
         }
@@ -59,16 +59,16 @@ namespace Aviary.Macaw.Filters
         private void SetFilter()
         {
             ImageType = ImageTypes.Rgb32bpp;
-            if( (int)channelMode > 3)
+            if( (int)mode > 3)
             {
                 Af.YCbCrExtractChannel newFilter = new Af.YCbCrExtractChannel();
-                newFilter.Channel = (short)(channelMode-4);
+                newFilter.Channel = (short)(mode-4);
                     imageFilter = newFilter;
             }
             else
             {
                 Af.ExtractChannel newFilter = new Af.ExtractChannel();
-                newFilter.Channel = (short)channelMode;
+                newFilter.Channel = (short)mode;
                 imageFilter = newFilter;
             }
             

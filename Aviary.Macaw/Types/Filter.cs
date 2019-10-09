@@ -13,7 +13,7 @@ namespace Aviary.Macaw
 
         #region members
 
-        public enum ImageTypes { GrayscaleBT709, GrayscaleRMY, GrayscaleY, GrayScale16bpp, Rgb16bpp, Rgb24bpp, Rgb32bpp, Rgb48bpp ,None};
+        public enum ImageTypes { GrayscaleBT709, GrayscaleRMY, GrayscaleY, GrayScale16bpp, Rgb16bpp, Rgb24bpp, Rgb32bpp, ARgb32bpp, Rgb48bpp, Rgb64bpp, None};
         public ImageTypes ImageType = ImageTypes.None;
 
         protected Af.IFilter imageFilter = new Af.Invert();

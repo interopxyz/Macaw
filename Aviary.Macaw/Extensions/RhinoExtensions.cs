@@ -17,6 +17,21 @@ namespace Aviary.Macaw
             return new Rg.Rectangle3d(Rg.Plane.WorldXY,new Rg.Interval(input.Left,input.Right),new Rg.Interval(transposition-input.Bottom, transposition - input.Top));
         }
 
+        public static System.Drawing.Rectangle ToDrawingRect(this Rg.Rectangle3d input, int transposition = 0)
+        {
+            return new System.Drawing.Rectangle((int)input.Corner(0).X, (int)input.Corner(0).Y, (int)input.Corner(2).X, (int)input.Corner(2).Y);
+        }
+
+        public static Rg.Point3d ToRhPoint(this System.Drawing.Point input, int transposition=0)
+        {
+            return new Rg.Point3d(input.X, input.Y, 0);
+        }
+
+        public static System.Drawing.Point ToDrawingPoint(this Rg.Point3d input, int transposition = 0)
+        {
+            return new System.Drawing.Point((int)input.X, (int)input.Y);
+        }
+
         public static List<Rg.Point3d> ToRhinoPoints(this List<Ac.IntPoint> input, int transposition = 0)
         {
             List<Rg.Point3d> points = new List<Rg.Point3d>();

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Accord.Imaging.Filters;
+using Af = Accord.Imaging.Filters;
 
-namespace Aviary.Macaw.Filters
+namespace Aviary.Macaw.Filters.Effects
 {
     public class GaussianBlur : Filter
     {
@@ -71,7 +71,7 @@ namespace Aviary.Macaw.Filters
         private void SetFilter()
         {
             ImageType = ImageTypes.Rgb32bpp;
-            Accord.Imaging.Filters.GaussianBlur newFilter = new Accord.Imaging.Filters.GaussianBlur();
+            Af.GaussianBlur newFilter = new Af.GaussianBlur();
             newFilter.Sigma = sigma;
             newFilter.Size = size;
             imageFilter = newFilter;

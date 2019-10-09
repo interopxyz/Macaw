@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Accord.Imaging;
-using Accord.Imaging.Filters;
+using Af = Accord.Imaging.Filters;
 
-namespace Aviary.Macaw.Filters
+namespace Aviary.Macaw.Filters.Filtering
 {
-    public class YCbCrFilter : Filter
+    public class YCbCr : Filter
     {
 
         #region members
@@ -31,12 +31,12 @@ namespace Aviary.Macaw.Filters
 
         #region constructors
 
-        public YCbCrFilter() : base()
+        public YCbCr() : base()
         {
             SetFilter();
         }
 
-        public YCbCrFilter(double yLow, double yHigh, double blueLow, double blueHigh, double redLow, double redHigh, bool outside, Color color) : base()
+        public YCbCr(double yLow, double yHigh, double blueLow, double blueHigh, double redLow, double redHigh, bool outside, Color color) : base()
         {
             this.yLow = yLow;
             this.yHigh = yHigh;
@@ -52,7 +52,7 @@ namespace Aviary.Macaw.Filters
             SetFilter();
         }
 
-        public YCbCrFilter(YCbCrFilter filter) : base(filter)
+        public YCbCr(YCbCr filter) : base(filter)
         {
             this.yLow = filter.yLow;
             this.yHigh = filter.yHigh;
@@ -159,9 +159,9 @@ namespace Aviary.Macaw.Filters
         private void SetFilter()
         {
             ImageType = ImageTypes.Rgb32bpp;
-            YCbCrFiltering newFilter = new YCbCrFiltering();
+            Af.YCbCrFiltering newFilter = new Af.YCbCrFiltering();
 
-            newFilter.FillColor = YCbCr.FromRGB(new Accord.Imaging.RGB(color));
+            newFilter.FillColor = Accord.Imaging.YCbCr.FromRGB(new Accord.Imaging.RGB(color));
 
             newFilter.Y = new Accord.Range((float)yLow, (float)yHigh);
             newFilter.Cb = new Accord.Range((float)(-0.5 + blueLow), (float)(-0.5 + blueHigh));
