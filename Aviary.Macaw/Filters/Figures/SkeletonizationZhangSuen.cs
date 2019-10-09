@@ -43,6 +43,7 @@ namespace Aviary.Macaw.Filters.Figures
         {
             ImageType = ImageTypes.Rgb24bpp;
             Af.ZhangSuenSkeletonization newFilter = new Af.ZhangSuenSkeletonization();
+            
             imageFilter = newFilter;
         }
 

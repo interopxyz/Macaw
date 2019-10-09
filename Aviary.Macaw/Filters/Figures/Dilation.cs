@@ -14,6 +14,7 @@ namespace Aviary.Macaw.Filters.Figures
         #region members
 
 
+
         #endregion
 
         #region constructors

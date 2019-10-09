@@ -11,11 +11,11 @@ namespace Aviary.Macaw.Filters.Figures
     public class ErosionWatershed : Filter
     {
 
-        public enum DistanceModes { Chessboard, Euclidean, Manhattan, SquaredEuclidean}
-        protected DistanceModes distanceMode = DistanceModes.Euclidean;
-
         #region members
-        
+
+        public enum DistanceModes { Chessboard, Euclidean, Manhattan, SquaredEuclidean }
+
+        protected DistanceModes distanceMode = DistanceModes.Euclidean;
         protected double tolerance = 1.0;
 
         #endregion

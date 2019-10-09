@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Aviary.Wind.Mathematics;
+
 using Af = Accord.Imaging.Filters;
 
 namespace Aviary.Macaw.Filters.Figures
@@ -13,11 +15,9 @@ namespace Aviary.Macaw.Filters.Figures
 
         #region members
 
-        protected int minHeight = 1;
-        protected int maxHeight = 100;
-        protected int minWidth = 1;
-        protected int maxWidth = 100;
-
+        protected Domain height = new Domain(1,100);
+        protected Domain width = new Domain(1, 100);
+ 
         protected bool blobs = false;
         protected bool coupled = false;
 
@@ -30,12 +30,10 @@ namespace Aviary.Macaw.Filters.Figures
             SetFilter();
         }
 
-        public BlobsUnique(int minWidth, int maxWidth, int minHeight, int maxHeight, bool blobs, bool coupled) : base()
+        public BlobsUnique(Domain width, Domain height, bool blobs, bool coupled) : base()
         {
-            this.minHeight = minHeight;
-            this.maxHeight = maxHeight;
-            this.minWidth = minWidth;
-            this.maxWidth = maxWidth;
+            this.width = width;
+            this.height = height;
 
             this.blobs = blobs;
             this.coupled = coupled;
@@ -46,10 +44,8 @@ namespace Aviary.Macaw.Filters.Figures
 
         public BlobsUnique(BlobsUnique filter) : base(filter)
         {
-            this.minHeight = filter.minHeight;
-            this.maxHeight = filter.maxHeight;
-            this.minWidth = filter.minWidth;
-            this.maxWidth = filter.maxWidth;
+            this.height = filter.height;
+            this.width = filter.width;
 
             this.blobs = filter.blobs;
             this.coupled = filter.coupled;
@@ -61,42 +57,22 @@ namespace Aviary.Macaw.Filters.Figures
 
         #region properties
         
-        public virtual int MinWidth
+        public virtual Domain Width
         {
-            get { return minWidth; }
+            get { return width; }
             set
             {
-                minWidth = value;
+                width = value;
                 SetFilter();
             }
         }
 
-        public virtual int MaxWidth
+        public virtual Domain Height
         {
-            get { return maxWidth; }
+            get { return height; }
             set
             {
-                maxWidth = value;
-                SetFilter();
-            }
-        }
-
-        public virtual int MinHeight
-        {
-            get { return minHeight; }
-            set
-            {
-                minHeight = value;
-                SetFilter();
-            }
-        }
-
-        public virtual int MaxHeight
-        {
-            get { return maxHeight; }
-            set
-            {
-                maxHeight = value;
+                height = value;
                 SetFilter();
             }
         }
@@ -130,10 +106,10 @@ namespace Aviary.Macaw.Filters.Figures
         {
             ImageType = ImageTypes.Rgb32bpp;
             Af.ConnectedComponentsLabeling newFilter = new Af.ConnectedComponentsLabeling();
-            newFilter.MinWidth = minWidth;
-            newFilter.MaxWidth = maxWidth;
-            newFilter.MinHeight = minHeight;
-            newFilter.MaxHeight = maxHeight;
+            newFilter.MinWidth = (int)width.T0;
+            newFilter.MaxWidth = (int)width.T1;
+            newFilter.MinHeight = (int)height.T0;
+            newFilter.MaxHeight = (int)height.T1;
 
             newFilter.CoupledSizeFiltering = coupled;
             newFilter.FilterBlobs = blobs;
