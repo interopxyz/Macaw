@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using static Aviary.Macaw.Layering.Layer;
 using Di = SoundInTheory.DynamicImage;
 
 namespace Aviary.Macaw.Layering
@@ -69,10 +69,45 @@ namespace Aviary.Macaw.Layering
                     imgLayer.Filters.Add(modifier.GetFilter());
                 }
 
+                int w = layer.Image.Width;
+                if (layer.Width > 0) w = layer.Width;
+                int h = layer.Image.Height;
+                if (layer.Height > 0) h = layer.Height;
+                imgLayer.Filters.Add(GetScaleFilter(w,h,layer.FittingMode));
+
+                imgLayer.Filters.Add(GetRotationFilter(layer.Angle));
+
+                imgLayer.X = layer.X;
+                imgLayer.Y = layer.Y;
+
                 composition.Layers.Add(imgLayer);
             }
 
             return composition.GenerateImage().Image.ToBitmap();
+        }
+
+        private Di.Filters.Filter GetRotationFilter(int angle)
+        {
+            Di.Filters.RotationFilter rotation = new Di.Filters.RotationFilter();
+            rotation.Angle = angle;
+            return rotation;
+        }
+
+        private Di.Filters.Filter GetScaleFilter(int width,int height, FittingModes mode) {
+            Di.Filters.ResizeFilter resize = new Di.Filters.ResizeFilter();
+            resize.Mode = (Di.Filters.ResizeMode)mode;
+            
+            resize.Width = Di.Unit.Pixel(width);
+            resize.Height = Di.Unit.Pixel(height);
+
+            return resize;
+        }
+
+        private Di.Filters.Filter GetTranslationFilter(Layer layer)
+        {
+            Di.Filters.ResizeFilter resize = new Di.Filters.ResizeFilter();
+
+            return resize;
         }
 
         #endregion

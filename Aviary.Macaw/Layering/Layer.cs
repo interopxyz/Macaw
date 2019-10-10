@@ -15,10 +15,21 @@ namespace Aviary.Macaw.Layering
         public enum BlendModes { Normal = 0, Dissolve = 1, Multiply = 2, Screen = 3, Overlay = 4, Darken = 5, Lighten = 6, ColorDodge = 7, ColorBurn = 8, LinearDodge = 9, LinearBurn = 10, LighterColor = 11, DarkerColor = 12, HardLight = 13, SoftLight = 14, LinearLight = 16, PinLight = 17, Difference = 19, Exclusion = 20, Color = 23, Luminosity = 24 }
         public BlendModes BlendMode = BlendModes.Normal;
 
+        public enum FittingModes { UseWidth = 0, UseHeight = 1, Fill = 2, Uniform= 3, UniformFill = 4 }
+        public FittingModes FittingMode = FittingModes.Fill;
+
         private Bitmap image = new Bitmap(100, 100);
         private Bitmap mask = new Bitmap(100, 100);
         protected bool isMasked = false;
         public double Opacity = 100.0;
+
+        public int Angle = 0;
+
+        public int X = 0;
+        public int Y = 0;
+
+        protected int width = 0;
+        protected int height = 0;
 
         public List<Modifier> Modifiers = new List<Modifier>();
 
@@ -48,6 +59,12 @@ namespace Aviary.Macaw.Layering
             this.mask = layer.Mask;
             this.isMasked = layer.isMasked;
             this.Opacity = layer.Opacity;
+            this.Angle = layer.Angle;
+            this.X = layer.X;
+            this.Y = layer.Y;
+            this.width = layer.width;
+            this.height = layer.height;
+            this.FittingMode = layer.FittingMode;
             foreach(Modifier modifier in layer.Modifiers)
             {
                 this.Modifiers.Add(new Modifier(modifier));
@@ -76,6 +93,24 @@ namespace Aviary.Macaw.Layering
         public virtual bool IsMasked
         {
             get { return isMasked; }
+        }
+
+        public virtual int Width
+        {
+            get { return width; }
+            set
+            {
+                width = value;
+            }
+        }
+
+        public virtual int Height
+        {
+            get { return height; }
+            set
+            {
+                height = value;
+            }
         }
 
         #endregion
