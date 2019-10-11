@@ -47,6 +47,7 @@ namespace Aviary.Macaw.Layering
             foreach(Layer layer in Layers)
             {
                 Di.Layers.ImageLayer imgLayer = new Di.Layers.ImageLayer();
+
                 imgLayer.BlendMode = (Di.BlendMode)layer.BlendMode;
                 imgLayer.Source = layer.Image.ToImageImageSource();
                 if(layer.IsMasked)
@@ -74,7 +75,7 @@ namespace Aviary.Macaw.Layering
                 int h = layer.Image.Height;
                 if (layer.Height > 0) h = layer.Height;
                 imgLayer.Filters.Add(GetScaleFilter(w,h,layer.FittingMode));
-
+                
                 imgLayer.Filters.Add(GetRotationFilter(layer.Angle));
 
                 imgLayer.X = layer.X;
@@ -88,17 +89,21 @@ namespace Aviary.Macaw.Layering
 
         private Di.Filters.Filter GetRotationFilter(int angle)
         {
-            Di.Filters.RotationFilter rotation = new Di.Filters.RotationFilter();
-            rotation.Angle = angle;
+            Di.Filters.RotationFilter rotation = new Di.Filters.RotationFilter
+            {
+                Angle = angle
+            };
             return rotation;
         }
 
         private Di.Filters.Filter GetScaleFilter(int width,int height, FittingModes mode) {
-            Di.Filters.ResizeFilter resize = new Di.Filters.ResizeFilter();
-            resize.Mode = (Di.Filters.ResizeMode)mode;
-            
-            resize.Width = Di.Unit.Pixel(width);
-            resize.Height = Di.Unit.Pixel(height);
+            Di.Filters.ResizeFilter resize = new Di.Filters.ResizeFilter
+            {
+                Mode = (Di.Filters.ResizeMode)mode,
+
+                Width = Di.Unit.Pixel(width),
+                Height = Di.Unit.Pixel(height)
+            };
 
             return resize;
         }

@@ -13,7 +13,7 @@ namespace Aviary.Macaw.Filters.Effects
 
         #region members
 
-        protected int size = 4;
+        protected double size = 1.0;
 
         #endregion
 
@@ -24,7 +24,7 @@ namespace Aviary.Macaw.Filters.Effects
             SetFilter();
         }
 
-        public Daube(int size) : base()
+        public Daube(double size) : base()
         {
             this.size = size;
             SetFilter();
@@ -40,7 +40,7 @@ namespace Aviary.Macaw.Filters.Effects
 
         #region properties
 
-        public virtual int Size
+        public virtual double Size
         {
             get { return size; }
             set
@@ -58,7 +58,7 @@ namespace Aviary.Macaw.Filters.Effects
         {
             ImageType = ImageTypes.Rgb32bpp;
             Af.OilPainting newFilter = new Af.OilPainting();
-            newFilter.BrushSize = size;
+            newFilter.BrushSize = (int)Remap(size,1,21);
             imageFilter = newFilter;
         }
 

@@ -13,7 +13,7 @@ namespace Aviary.Macaw.Filters.Effects
 
         #region members
 
-        protected int size = 0;
+        protected double size = 0;
 
         #endregion
 
@@ -24,7 +24,7 @@ namespace Aviary.Macaw.Filters.Effects
             SetFilter();
         }
 
-        public Kuwahara(int size) : base()
+        public Kuwahara(double size) : base()
         {
             this.size = size;
             SetFilter();
@@ -40,7 +40,7 @@ namespace Aviary.Macaw.Filters.Effects
 
         #region properties
 
-        public virtual int Size
+        public virtual double Size
         {
             get { return size; }
             set
@@ -58,8 +58,14 @@ namespace Aviary.Macaw.Filters.Effects
         {
             ImageType = ImageTypes.GrayscaleBT709;
             Af.Kuwahara newFilter = new Af.Kuwahara();
-            newFilter.Size = size;
+            newFilter.Size = makeOdd();
             imageFilter = newFilter;
+        }
+
+        public int makeOdd()
+        {
+            int val = (int)(5 + ((size%1.0) * 95));
+            return val + ((val + 1) % 2); ;
         }
 
         #endregion

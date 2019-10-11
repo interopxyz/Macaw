@@ -13,7 +13,7 @@ namespace Aviary.Macaw.Filters.Effects
 
         #region members
 
-        protected int radius = 0;
+        protected double radius = 0;
 
         #endregion
 
@@ -24,7 +24,7 @@ namespace Aviary.Macaw.Filters.Effects
             SetFilter();
         }
 
-        public Jitter(int radius) : base()
+        public Jitter(double radius) : base()
         {
             this.radius = radius;
             SetFilter();
@@ -40,7 +40,7 @@ namespace Aviary.Macaw.Filters.Effects
 
         #region properties
 
-        public virtual int Radius
+        public virtual double Radius
         {
             get { return radius; }
             set
@@ -58,7 +58,7 @@ namespace Aviary.Macaw.Filters.Effects
         {
             ImageType = ImageTypes.Rgb32bpp;
             Af.Jitter newFilter = new Af.Jitter();
-            newFilter.Radius = radius;
+            newFilter.Radius = (int)Remap(radius,1,10);
             imageFilter = newFilter;
         }
 

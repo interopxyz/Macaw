@@ -13,8 +13,8 @@ namespace Aviary.Macaw.Filters.Effects
 
         #region members
 
-        protected int divisor = 0;
-        protected int threshold = 0;
+        protected double divisor = 0;
+        protected double threshold = 0;
 
         #endregion
 
@@ -25,7 +25,7 @@ namespace Aviary.Macaw.Filters.Effects
             SetFilter();
         }
 
-        public Blur(int divisor, int threshold) : base()
+        public Blur(double divisor, double threshold) : base()
         {
             this.divisor = divisor;
             this.threshold = threshold;
@@ -43,7 +43,7 @@ namespace Aviary.Macaw.Filters.Effects
 
         #region properties
 
-        public virtual int Divisor
+        public virtual double Divisor
         {
             get { return divisor; }
             set
@@ -53,7 +53,7 @@ namespace Aviary.Macaw.Filters.Effects
             }
         }
 
-        public virtual int Threshold
+        public virtual double Threshold
         {
             get { return threshold; }
             set
@@ -71,8 +71,8 @@ namespace Aviary.Macaw.Filters.Effects
         {
             ImageType = ImageTypes.Rgb32bpp;
             Af.Blur newFilter = new Af.Blur();
-            newFilter.Divisor = divisor;
-            newFilter.Threshold = threshold;
+            newFilter.Divisor = (int)Remap(Math.Abs(divisor),1,100);
+            newFilter.Threshold = (int)Remap(threshold,0,100);
             imageFilter = newFilter;
         }
 

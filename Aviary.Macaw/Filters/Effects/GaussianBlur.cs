@@ -14,7 +14,7 @@ namespace Aviary.Macaw.Filters.Effects
         #region members
 
         protected double sigma = 0;
-        protected int size = 1;
+        protected double size = 1;
 
         #endregion
 
@@ -25,7 +25,7 @@ namespace Aviary.Macaw.Filters.Effects
             SetFilter();
         }
 
-        public GaussianBlur(double sigma, int size) : base()
+        public GaussianBlur(double sigma, double size) : base()
         {
             this.sigma = sigma;
             this.size = size;
@@ -54,7 +54,7 @@ namespace Aviary.Macaw.Filters.Effects
             }
         }
 
-        public virtual int Size
+        public virtual double Size
         {
             get { return size; }
             set
@@ -72,8 +72,8 @@ namespace Aviary.Macaw.Filters.Effects
         {
             ImageType = ImageTypes.Rgb32bpp;
             Af.GaussianBlur newFilter = new Af.GaussianBlur();
-            newFilter.Sigma = sigma;
-            newFilter.Size = size;
+            newFilter.Sigma = Remap(sigma,0.5,5.0);
+            newFilter.Size = (int)Remap(size,3,21);
             imageFilter = newFilter;
         }
 

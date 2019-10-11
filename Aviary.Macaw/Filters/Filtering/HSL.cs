@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Accord.Imaging;
+using Aviary.Wind.Mathematics;
 using Af = Accord.Imaging.Filters;
 
 namespace Aviary.Macaw.Filters.Filtering
@@ -16,14 +17,9 @@ namespace Aviary.Macaw.Filters.Filtering
 
         protected Color color = Color.Black;
 
-        protected double  hueLow = 0;
-        protected double  hueHigh = 1.0;
-                   
-        protected double  saturationLow = 0;
-        protected double  saturationHigh = 1.0;
-                   
-        protected double  luminanceLow = 0;
-        protected double  luminanceHigh = 1.0;
+        protected Domain hue = new Domain(0, 1);
+        protected Domain saturation = new Domain(0, 1);
+        protected Domain luminance = new Domain(0, 1);
 
         protected bool outside = false;
 
@@ -36,14 +32,11 @@ namespace Aviary.Macaw.Filters.Filtering
             SetFilter();
         }
 
-        public HSL(double hueLow, double hueHigh, double saturationLow, double saturationHigh, double luminanceLow, double luminanceHigh, bool outside, Color color) : base()
+        public HSL(Domain hue, Domain saturation, Domain luminance, bool outside, Color color) : base()
         {
-            this.hueLow = hueLow;
-            this.hueHigh = hueHigh;
-            this.saturationLow = saturationLow;
-            this.saturationHigh = saturationHigh;
-            this.luminanceLow = luminanceLow;
-            this.luminanceHigh = luminanceHigh;
+            this.hue = hue;
+            this.saturation = saturation;
+            this.luminance = luminance;
 
             this.outside = outside;
 
@@ -54,12 +47,9 @@ namespace Aviary.Macaw.Filters.Filtering
 
         public HSL(HSL filter) : base(filter)
         {
-            this.hueLow = filter.hueLow;
-            this.hueHigh = filter.hueHigh;
-            this.saturationLow = filter.saturationLow;
-            this.saturationHigh = filter.saturationHigh;
-            this.luminanceLow = filter.luminanceLow;
-            this.luminanceHigh = filter.luminanceHigh;
+            this.hue = filter.hue;
+            this.saturation = filter.saturation;
+            this.luminance = filter.luminance;
 
             this.outside = filter.outside;
 
@@ -72,62 +62,32 @@ namespace Aviary.Macaw.Filters.Filtering
 
         #region properties
 
-        public virtual double HueLow
+        public virtual Domain Hue
         {
-            get { return hueLow; }
+            get { return hue; }
             set
             {
-                hueLow = value;
+                hue = value;
                 SetFilter();
             }
         }
 
-        public virtual double HueHigh
+        public virtual Domain Saturation
         {
-            get { return hueHigh; }
+            get { return saturation; }
             set
             {
-                hueHigh = value;
+                saturation = value;
                 SetFilter();
             }
         }
 
-        public virtual double SaturationLow
+        public virtual Domain Luminance
         {
-            get { return saturationLow; }
+            get { return luminance; }
             set
             {
-                saturationLow = value;
-                SetFilter();
-            }
-        }
-
-        public virtual double SaturationHigh
-        {
-            get { return saturationHigh; }
-            set
-            {
-                saturationHigh = value;
-                SetFilter();
-            }
-        }
-
-        public virtual double LuminanceLow
-        {
-            get { return luminanceLow; }
-            set
-            {
-                luminanceLow = value;
-                SetFilter();
-            }
-        }
-
-        public virtual double LuminanceHigh
-        {
-            get { return luminanceHigh; }
-            set
-            {
-                luminanceHigh = value;
+                luminance = value;
                 SetFilter();
             }
         }
@@ -163,9 +123,9 @@ namespace Aviary.Macaw.Filters.Filtering
 
             newFilter.FillColor = Accord.Imaging.HSL.FromRGB(new Accord.Imaging.RGB(color));
 
-            newFilter.Hue = new Accord.IntRange((int)(359.0*hueLow), (int)(359.0 * hueHigh));
-            newFilter.Saturation = new Accord.Range((float)saturationLow, (float)saturationHigh);
-            newFilter.Luminance = new Accord.Range((float)luminanceLow, (float)luminanceHigh);
+            newFilter.Hue = new Accord.IntRange((int)Remap(hue.T0,0,359), (int)Remap(hue.T1, 0, 359));
+            newFilter.Saturation = new Accord.Range((float)saturation.T0, (float)saturation.T1);
+            newFilter.Luminance = new Accord.Range((float)luminance.T0, (float)luminance.T1);
 
             newFilter.FillOutsideRange = outside;
 

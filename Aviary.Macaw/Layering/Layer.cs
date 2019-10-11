@@ -59,12 +59,17 @@ namespace Aviary.Macaw.Layering
             this.mask = layer.Mask;
             this.isMasked = layer.isMasked;
             this.Opacity = layer.Opacity;
+
             this.Angle = layer.Angle;
+
             this.X = layer.X;
             this.Y = layer.Y;
+
             this.width = layer.width;
             this.height = layer.height;
+
             this.FittingMode = layer.FittingMode;
+
             foreach(Modifier modifier in layer.Modifiers)
             {
                 this.Modifiers.Add(new Modifier(modifier));

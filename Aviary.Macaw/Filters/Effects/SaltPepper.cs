@@ -24,7 +24,7 @@ namespace Aviary.Macaw.Filters.Effects
             SetFilter();
         }
 
-        public SaltPepper(int noise) : base()
+        public SaltPepper(double noise) : base()
         {
             this.noise = noise;
             SetFilter();
@@ -58,7 +58,7 @@ namespace Aviary.Macaw.Filters.Effects
         {
             ImageType = ImageTypes.Rgb32bpp;
             Af.SaltAndPepperNoise newFilter = new Af.SaltAndPepperNoise();
-            newFilter.NoiseAmount = noise;
+            newFilter.NoiseAmount = Remap(noise,0,100);
             imageFilter = newFilter;
         }
 

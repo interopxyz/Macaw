@@ -14,7 +14,7 @@ namespace Aviary.Macaw.Filters.Effects
         #region members
 
         protected int type = 0;
-        protected int interval = 1;
+        protected double interval = 1;
 
         #endregion
 
@@ -25,7 +25,7 @@ namespace Aviary.Macaw.Filters.Effects
             SetFilter();
         }
 
-        public Posterize(int type, int interval) : base()
+        public Posterize( double interval) : base()
         {
             this.type = type;
             this.interval = interval;
@@ -53,7 +53,7 @@ namespace Aviary.Macaw.Filters.Effects
             }
         }
 
-        public virtual int Interval
+        public virtual double Interval
         {
             get { return interval; }
             set
@@ -71,8 +71,8 @@ namespace Aviary.Macaw.Filters.Effects
         {
             ImageType = ImageTypes.Rgb32bpp;
             Af.SimplePosterization newFilter = new Af.SimplePosterization();
-            newFilter.FillingType = (Af.SimplePosterization.PosterizationFillingType) type;
-            newFilter.PosterizationInterval = (byte)interval;
+            newFilter.FillingType = Af.SimplePosterization.PosterizationFillingType.Average;
+            newFilter.PosterizationInterval = (byte)Remap(interval,1,100);
             imageFilter = newFilter;
         }
 

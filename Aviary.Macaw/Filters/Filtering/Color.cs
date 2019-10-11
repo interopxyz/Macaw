@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aviary.Wind.Mathematics;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -16,14 +17,9 @@ namespace Aviary.Macaw.Filters.Filtering
 
         protected Color color = Color.Black;
 
-        protected double redLow = 0;
-        protected double redHigh = 255;
-                  
-        protected double greenLow = 0;
-        protected double greenHigh = 255;
-                  
-        protected double blueLow = 0;
-        protected double blueHigh = 255;
+        protected Domain red = new Domain(0, 1);
+        protected Domain green = new Domain(0, 1);
+        protected Domain blue = new Domain(0, 1);
 
         protected bool outside = false;
 
@@ -36,14 +32,12 @@ namespace Aviary.Macaw.Filters.Filtering
             SetFilter();
         }
 
-        public ColorFilter(double redLow, double redHigh, double greenLow, double greenHigh, double blueLow, double blueHigh, bool outside, Color color) : base()
+        public ColorFilter(Domain red, Domain green, Domain blue, bool outside, Color color) : base()
         {
-            this.redLow = redLow;
-            this.redHigh = redHigh;
-            this.greenLow = greenLow;
-            this.greenHigh = greenHigh;
-            this.blueLow = blueLow;
-            this.blueHigh = blueHigh;
+
+            this.red = red;
+            this.green = green;
+            this.blue = blue;
 
             this.outside = outside;
 
@@ -54,12 +48,10 @@ namespace Aviary.Macaw.Filters.Filtering
 
         public ColorFilter(ColorFilter filter) : base(filter)
         {
-            this.redLow = filter.redLow;
-            this.redHigh = filter.redHigh;
-            this.greenLow = filter.greenLow;
-            this.greenHigh = filter.greenHigh;
-            this.blueLow = filter.blueLow;
-            this.blueHigh = filter.blueHigh;
+
+            this.red = filter.red;
+            this.green = filter.green;
+            this.blue = filter.blue;
 
             this.outside = filter.outside;
 
@@ -72,62 +64,32 @@ namespace Aviary.Macaw.Filters.Filtering
 
         #region properties
 
-        public virtual double RedLow
+        public virtual Domain Red
         {
-            get { return redLow; }
+            get { return red; }
             set
             {
-                redLow = value;
+                red = value;
                 SetFilter();
             }
         }
 
-        public virtual double RedHigh
+        public virtual Domain Green
         {
-            get { return redHigh; }
+            get { return green; }
             set
             {
-                redHigh = value;
+                green = value;
                 SetFilter();
             }
         }
 
-        public virtual double GreenLow
+        public virtual Domain Blue
         {
-            get { return greenLow; }
+            get { return blue; }
             set
             {
-                greenLow = value;
-                SetFilter();
-            }
-        }
-
-        public virtual double GreenHigh
-        {
-            get { return greenHigh; }
-            set
-            {
-                greenHigh = value;
-                SetFilter();
-            }
-        }
-
-        public virtual double BlueLow
-        {
-            get { return blueLow; }
-            set
-            {
-                blueLow = value;
-                SetFilter();
-            }
-        }
-
-        public virtual double BlueHigh
-        {
-            get { return blueHigh; }
-            set
-            {
-                blueHigh = value;
+                blue = value;
                 SetFilter();
             }
         }
@@ -163,9 +125,9 @@ namespace Aviary.Macaw.Filters.Filtering
 
             newFilter.FillColor = new Accord.Imaging.RGB(color);
 
-            newFilter.Red = new Accord.IntRange((int)(255.0*redLow), (int)(255.0 * redHigh));
-            newFilter.Green = new Accord.IntRange((int)(255.0 * greenLow), (int)(255.0 * greenHigh));
-            newFilter.Blue = new Accord.IntRange((int)(255.0 * blueLow), (int)(255.0 * blueHigh));
+            newFilter.Red =   new Accord.IntRange((int)Remap(red.T0,0,255), (int)Remap(red.T1, 0, 255));
+            newFilter.Green = new Accord.IntRange((int)Remap(green.T0, 0, 255), (int)Remap(green.T1, 0, 255));
+            newFilter.Blue =  new Accord.IntRange((int)Remap(blue.T0, 0, 255), (int)Remap(blue.T1, 0, 255));
 
             newFilter.FillOutsideRange = outside;
 

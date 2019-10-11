@@ -13,8 +13,8 @@ namespace Aviary.Macaw.Filters.Effects
 
         #region members
 
-        protected int width = 1;
-        protected int height = 1;
+        protected double width = 1;
+        protected double height = 1;
 
         #endregion
 
@@ -25,7 +25,7 @@ namespace Aviary.Macaw.Filters.Effects
             SetFilter();
         }
 
-        public Pixellate(int width, int height) : base()
+        public Pixellate(double width, double height) : base()
         {
             this.width = width;
             this.height = height;
@@ -43,7 +43,7 @@ namespace Aviary.Macaw.Filters.Effects
 
         #region properties
 
-        public virtual int Width
+        public virtual double Width
         {
             get { return width; }
             set
@@ -53,7 +53,7 @@ namespace Aviary.Macaw.Filters.Effects
             }
         }
 
-        public virtual int Height
+        public virtual double Height
         {
             get { return height; }
             set
@@ -71,8 +71,8 @@ namespace Aviary.Macaw.Filters.Effects
         {
             ImageType = ImageTypes.Rgb24bpp;
             Af.Pixellate newFilter = new Af.Pixellate();
-            newFilter.PixelWidth = width;
-            newFilter.PixelHeight = height;
+            newFilter.PixelWidth = (int)Remap(width,2,32);
+            newFilter.PixelHeight = (int)Remap(height,2,32);
             imageFilter = newFilter;
         }
 

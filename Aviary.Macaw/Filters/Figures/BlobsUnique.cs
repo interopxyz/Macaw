@@ -104,7 +104,7 @@ namespace Aviary.Macaw.Filters.Figures
 
         private void SetFilter()
         {
-            ImageType = ImageTypes.Rgb32bpp;
+            ImageType = ImageTypes.Rgb24bpp;
             Af.ConnectedComponentsLabeling newFilter = new Af.ConnectedComponentsLabeling();
             newFilter.MinWidth = (int)width.T0;
             newFilter.MaxWidth = (int)width.T1;

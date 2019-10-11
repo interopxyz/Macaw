@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Accord.Imaging;
+using Aviary.Wind.Mathematics;
 using Af = Accord.Imaging.Filters;
 
 namespace Aviary.Macaw.Filters.Filtering
@@ -16,14 +17,9 @@ namespace Aviary.Macaw.Filters.Filtering
 
         protected Color color = Color.Black;
 
-        protected double yLow = 0;
-        protected double yHigh = 1.0;
-
-        protected double blueLow = 0;
-        protected double blueHigh = 1.0;
-
-        protected double redLow = 0;
-        protected double redHigh = 1.0;
+        protected Domain y = new Domain(0,1);
+        protected Domain cb = new Domain(0, 1);
+        protected Domain cr = new Domain(0, 1);
 
         protected bool outside = false;
 
@@ -36,14 +32,11 @@ namespace Aviary.Macaw.Filters.Filtering
             SetFilter();
         }
 
-        public YCbCr(double yLow, double yHigh, double blueLow, double blueHigh, double redLow, double redHigh, bool outside, Color color) : base()
+        public YCbCr(Domain y, Domain cb, Domain cr, bool outside, Color color) : base()
         {
-            this.yLow = yLow;
-            this.yHigh = yHigh;
-            this.blueLow = blueLow;
-            this.blueHigh = blueHigh;
-            this.redLow = redLow;
-            this.redHigh = redHigh;
+            this.y = y;
+            this.cb = cb;
+            this.cr = cr;
 
             this.outside = outside;
 
@@ -54,12 +47,9 @@ namespace Aviary.Macaw.Filters.Filtering
 
         public YCbCr(YCbCr filter) : base(filter)
         {
-            this.yLow = filter.yLow;
-            this.yHigh = filter.yHigh;
-            this.blueLow = filter.blueLow;
-            this.blueHigh = filter.blueHigh;
-            this.redLow = filter.redLow;
-            this.redHigh = filter.redHigh;
+            this.y = filter.y;
+            this.cb = filter.cb;
+            this.cr = filter.cr;
 
             this.outside = filter.outside;
 
@@ -72,62 +62,32 @@ namespace Aviary.Macaw.Filters.Filtering
 
         #region properties
 
-        public virtual double YLow
+        public virtual Domain Y
         {
-            get { return yLow; }
+            get { return y; }
             set
             {
-                yLow = value;
+                y = value;
                 SetFilter();
             }
         }
 
-        public virtual double YHigh
+        public virtual Domain Cr
         {
-            get { return yHigh; }
+            get { return cr; }
             set
             {
-                yHigh = value;
+                cr = value;
                 SetFilter();
             }
         }
 
-        public virtual double BlueLow
+        public virtual Domain Cb
         {
-            get { return blueLow; }
+            get { return cb; }
             set
             {
-                blueLow = value;
-                SetFilter();
-            }
-        }
-
-        public virtual double BlueHigh
-        {
-            get { return blueHigh; }
-            set
-            {
-                blueHigh = value;
-                SetFilter();
-            }
-        }
-
-        public virtual double RedLow
-        {
-            get { return redLow; }
-            set
-            {
-                redLow = value;
-                SetFilter();
-            }
-        }
-
-        public virtual double RedHigh
-        {
-            get { return redHigh; }
-            set
-            {
-                redHigh = value;
+                cb = value;
                 SetFilter();
             }
         }
@@ -163,9 +123,9 @@ namespace Aviary.Macaw.Filters.Filtering
 
             newFilter.FillColor = Accord.Imaging.YCbCr.FromRGB(new Accord.Imaging.RGB(color));
 
-            newFilter.Y = new Accord.Range((float)yLow, (float)yHigh);
-            newFilter.Cb = new Accord.Range((float)(-0.5 + blueLow), (float)(-0.5 + blueHigh));
-            newFilter.Cr = new Accord.Range((float)(-0.5 + redLow), (float)(-0.5 + redHigh));
+            newFilter.Y = new Accord.Range((float)y.T0, (float)y.T1);
+            newFilter.Cb = new Accord.Range((float)Remap(cb.T0,-0.5,0.5), (float)Remap(cb.T1, -0.5, 0.5));
+            newFilter.Cr = new Accord.Range((float)Remap(cr.T0, -0.5, 0.5), (float)Remap(cr.T1, -0.5, 0.5));
 
             newFilter.FillOutsideRange = outside;
 
