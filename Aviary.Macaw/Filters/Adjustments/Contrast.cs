@@ -13,7 +13,7 @@ namespace Aviary.Macaw.Filters.Adjustments
 
         #region members
 
-        protected int factor = 0;
+        protected double factor = 0.5;
 
         #endregion
 
@@ -24,7 +24,7 @@ namespace Aviary.Macaw.Filters.Adjustments
             SetFilter();
         }
 
-        public Contrast(int factor) : base()
+        public Contrast(double factor) : base()
         {
             this.factor = factor;
             SetFilter();
@@ -40,7 +40,7 @@ namespace Aviary.Macaw.Filters.Adjustments
 
         #region properties
 
-        public virtual int Factor
+        public virtual double Factor
         {
             get { return factor; }
             set
@@ -58,7 +58,7 @@ namespace Aviary.Macaw.Filters.Adjustments
         {
             ImageType = ImageTypes.Rgb32bpp;
             Af.ContrastCorrection newFilter = new Af.ContrastCorrection();
-            newFilter.Factor = factor;
+            newFilter.Factor = (int)Remap(factor, -127, 127); ;
             imageFilter = newFilter;
         }
 

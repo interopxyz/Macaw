@@ -13,7 +13,7 @@ namespace Aviary.Macaw.Filters.Adjustments
 
         #region members
 
-        protected int adjust = 0;
+        protected double adjust = 0.5;
 
         #endregion
 
@@ -24,7 +24,7 @@ namespace Aviary.Macaw.Filters.Adjustments
             SetFilter();
         }
 
-        public Brightness(int adjust) : base()
+        public Brightness(double adjust) : base()
         {
             this.adjust = adjust;
             SetFilter();
@@ -40,7 +40,7 @@ namespace Aviary.Macaw.Filters.Adjustments
 
         #region properties
 
-        public virtual int Adjust
+        public virtual double Adjust
         {
             get { return adjust; }
             set
@@ -58,7 +58,7 @@ namespace Aviary.Macaw.Filters.Adjustments
         {
             ImageType = ImageTypes.Rgb32bpp;
             Af.BrightnessCorrection newFilter = new Af.BrightnessCorrection();
-            newFilter.AdjustValue = adjust;
+            newFilter.AdjustValue = (int)Remap(adjust,-255,255);
             imageFilter = newFilter;
         }
 

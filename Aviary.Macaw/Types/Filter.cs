@@ -46,7 +46,10 @@ namespace Aviary.Macaw
 
         #region methods
 
-
+        protected double Remap(double t, double min, double max)
+        {
+            return min + (max - min) * t;
+        }
 
         #endregion
 

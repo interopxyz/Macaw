@@ -58,7 +58,7 @@ namespace Aviary.Macaw.Filters.Adjustments
         {
             ImageType = ImageTypes.Rgb24bpp;
             Af.GammaCorrection newFilter = new Af.GammaCorrection();
-            newFilter.Gamma = gamma;
+            newFilter.Gamma = Remap(gamma,0.1,5.0);
             imageFilter = newFilter;
         }
 

@@ -58,7 +58,7 @@ namespace Aviary.Macaw.Filters.Adjustments
         {
             ImageType = ImageTypes.Rgb32bpp;
             Af.SaturationCorrection newFilter = new Af.SaturationCorrection();
-            newFilter.AdjustValue = (float)adjust;
+            newFilter.AdjustValue = (float)Remap(adjust,-1.0,1.0);
             imageFilter = newFilter;
         }
 

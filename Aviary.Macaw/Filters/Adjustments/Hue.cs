@@ -13,7 +13,7 @@ namespace Aviary.Macaw.Filters.Adjustments
 
         #region members
 
-        protected int hue = 0;
+        protected double hue = 0;
 
         #endregion
 
@@ -24,7 +24,7 @@ namespace Aviary.Macaw.Filters.Adjustments
             SetFilter();
         }
 
-        public Hue(int hue) : base()
+        public Hue(double hue) : base()
         {
             this.hue = hue;
             SetFilter();
@@ -40,7 +40,7 @@ namespace Aviary.Macaw.Filters.Adjustments
 
         #region properties
 
-        public virtual int Factor
+        public virtual double Factor
         {
             get { return hue; }
             set
@@ -58,7 +58,7 @@ namespace Aviary.Macaw.Filters.Adjustments
         {
             ImageType = ImageTypes.Rgb32bpp;
             Af.HueModifier newFilter = new Af.HueModifier();
-            newFilter.Hue = hue;
+            newFilter.Hue = (int)Remap(hue, 0, 359); ;
             imageFilter = newFilter;
         }
 
