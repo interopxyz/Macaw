@@ -87,7 +87,7 @@ namespace Aviary.Macaw.Filters.Threshold
             ImageType = ImageTypes.Rgb24bpp;
             Af.SauvolaThreshold newFilter = new Af.SauvolaThreshold();
             newFilter.K = k;
-            newFilter.R = r;
+            newFilter.R = Remap(r, 0, 255);
             newFilter.Radius = radius;
 
             imageFilter = newFilter;

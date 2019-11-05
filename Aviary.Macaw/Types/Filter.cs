@@ -51,6 +51,15 @@ namespace Aviary.Macaw
             return (min + (max - min) * t);
         }
 
+        public Filter GetDefault()
+        {
+            Filter filter = new Filter();
+            filter.ImageType = ImageTypes.Rgb24bpp;
+            filter.imageFilter = new Af.Mirror(false, false);
+
+            return filter;
+        }
+
         #endregion
 
     }

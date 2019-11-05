@@ -31,7 +31,7 @@ namespace Aviary.Macaw.Filters.Channels
         public Replace(Modes mode, Bitmap channelImage) : base()
         {
             this.mode = mode;
-            this.channelImage = channelImage;
+            this.ChannelImage = channelImage;
 
             SetFilter();
         }
@@ -39,7 +39,7 @@ namespace Aviary.Macaw.Filters.Channels
         public Replace(Replace filter) : base(filter)
         {
             this.mode = filter.mode;
-            this.channelImage = filter.channelImage;
+            this.ChannelImage = filter.channelImage;
 
             SetFilter();
         }
@@ -77,13 +77,13 @@ namespace Aviary.Macaw.Filters.Channels
         {
             if ((int)mode > 3)
             {
-                ImageType = ImageTypes.Rgb24bpp;
+                ImageType = ImageTypes.ARgb32bpp;
                 Af.YCbCrReplaceChannel newFilter = new Af.YCbCrReplaceChannel((short)(mode-4),channelImage);
                 imageFilter = newFilter;
             }
             else
             {
-                ImageType = ImageTypes.Rgb24bpp;
+                ImageType = ImageTypes.ARgb32bpp;
                 Af.ReplaceChannel newFilter = new Af.ReplaceChannel((short)mode, channelImage);
                 imageFilter = newFilter;
             }

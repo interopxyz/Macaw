@@ -70,7 +70,14 @@ namespace Aviary.Macaw
                 case Filter.ImageTypes.GrayScale16bpp:
                     return Ai.Image.Clone(input, Sd.Imaging.PixelFormat.Format16bppGrayScale);
                 case Filter.ImageTypes.GrayscaleBT709:
-                    return Ai.Filters.Grayscale.CommonAlgorithms.BT709.Apply((Sd.Bitmap)input.Clone());
+                    if(input.PixelFormat != Sd.Imaging.PixelFormat.Format8bppIndexed)
+                    {
+                        return Ai.Filters.Grayscale.CommonAlgorithms.BT709.Apply((Sd.Bitmap)input.Clone());
+                    }
+                    else
+                    {
+                        return (Sd.Bitmap)input.Clone();
+                    }
                 case Filter.ImageTypes.GrayscaleRMY:
                     return Ai.Filters.Grayscale.CommonAlgorithms.RMY.Apply((Sd.Bitmap)input.Clone());
                 case Filter.ImageTypes.GrayscaleY:

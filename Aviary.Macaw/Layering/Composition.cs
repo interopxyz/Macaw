@@ -44,10 +44,11 @@ namespace Aviary.Macaw.Layering
         public Bitmap GetBitmap()
         {
             Di.Composition composition = new Di.Composition();
+            composition.Fill.BackgroundColor = Di.Color.FromArgb(0,0,0,0);
+            composition.Fill.Type = Di.FillType.Solid;
             foreach(Layer layer in Layers)
             {
                 Di.Layers.ImageLayer imgLayer = new Di.Layers.ImageLayer();
-
                 imgLayer.BlendMode = (Di.BlendMode)layer.BlendMode;
                 imgLayer.Source = layer.Image.ToImageImageSource();
                 if(layer.IsMasked)

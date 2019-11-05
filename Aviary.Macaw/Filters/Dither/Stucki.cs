@@ -56,7 +56,7 @@ namespace Aviary.Macaw.Filters.Dither
 
         private void SetFilter()
         {
-            ImageType = ImageTypes.Rgb32bpp;
+            ImageType = ImageTypes.GrayscaleBT709;
             Af.StuckiDithering newFilter = new Af.StuckiDithering();
             newFilter.ThresholdValue = (byte)threshold;
             imageFilter = newFilter;

@@ -15,10 +15,10 @@ namespace Aviary.Macaw.Filters.Levels
 
         #region members
 
-        protected Wd.Domain luminanceIn = new Wd.Domain(0, 255);
-        protected Wd.Domain luminanceOut = new Wd.Domain(0, 255);
-        protected Wd.Domain saturationIn = new Wd.Domain(0, 255);
-        protected Wd.Domain saturationOut = new Wd.Domain(0, 255);
+        protected Wd.Domain luminanceIn = new Wd.Domain(0, 1);
+        protected Wd.Domain luminanceOut = new Wd.Domain(0, 1);
+        protected Wd.Domain saturationIn = new Wd.Domain(0, 1);
+        protected Wd.Domain saturationOut = new Wd.Domain(0, 1);
 
 
         #endregion
@@ -31,7 +31,7 @@ namespace Aviary.Macaw.Filters.Levels
             SetFilter();
         }
 
-        public HSL(Wd.Domain luminanceIn, Wd.Domain luminanceOut, Wd.Domain saturationIn, Wd.Domain saturationOut) : base()
+        public HSL(Wd.Domain saturationIn, Wd.Domain saturationOut, Wd.Domain luminanceIn, Wd.Domain luminanceOut) : base()
         {
             this.luminanceIn = luminanceIn;
             this.luminanceOut = luminanceOut;
@@ -103,10 +103,10 @@ namespace Aviary.Macaw.Filters.Levels
         {
             ImageType = ImageTypes.Rgb32bpp;
             Af.HSLLinear newFilter = new Af.HSLLinear();
-            newFilter.InLuminance = luminanceIn.ToIntRange();
-            newFilter.OutLuminance = luminanceOut.ToIntRange();
-            newFilter.InSaturation = saturationIn.ToIntRange();
-            newFilter.OutSaturation= saturationOut.ToIntRange();
+            newFilter.InLuminance = luminanceIn.ToRange();
+            newFilter.OutLuminance = luminanceOut.ToRange();
+            newFilter.InSaturation = saturationIn.ToRange();
+            newFilter.OutSaturation= saturationOut.ToRange();
             imageFilter = newFilter;
         }
 

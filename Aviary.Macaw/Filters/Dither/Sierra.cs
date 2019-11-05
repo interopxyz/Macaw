@@ -56,7 +56,7 @@ namespace Aviary.Macaw.Filters.Dither
 
         private void SetFilter()
         {
-            ImageType = ImageTypes.Rgb32bpp;
+            ImageType = ImageTypes.GrayscaleBT709;
             Af.SierraDithering newFilter = new Af.SierraDithering();
             newFilter.ThresholdValue = (byte)threshold;
             imageFilter = newFilter;

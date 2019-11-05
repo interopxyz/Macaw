@@ -41,7 +41,7 @@ namespace Aviary.Macaw.Filters.Threshold
 
         private void SetFilter()
         {
-            ImageType = ImageTypes.Rgb24bpp;
+            ImageType = ImageTypes.GrayscaleBT709;
             Af.OtsuThreshold newFilter = new Af.OtsuThreshold();
 
             imageFilter = newFilter;

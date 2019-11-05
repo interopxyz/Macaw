@@ -27,14 +27,14 @@ namespace Aviary.Macaw.Filters.Difference
 
         public Add(Bitmap overlay) : base()
         {
-            this.overlay = overlay;
+            this.Overlay = overlay;
 
             SetFilter();
         }
 
         public Add(Add filter) : base(filter)
         {
-            this.overlay = filter.overlay;
+            this.Overlay = filter.overlay;
 
             SetFilter();
         }
@@ -45,10 +45,10 @@ namespace Aviary.Macaw.Filters.Difference
 
         public virtual Bitmap Overlay
         {
-            get { return overlay; }
+            get { return (Bitmap)overlay.Clone(); }
             set
             {
-                overlay = value;
+                overlay = value.ToAccordBitmap(ImageTypes.Rgb24bpp);
                 SetFilter();
             }
         }
@@ -61,8 +61,7 @@ namespace Aviary.Macaw.Filters.Difference
         {
             ImageType = ImageTypes.Rgb24bpp;
             Af.Add newFilter = new Af.Add();
-            newFilter.OverlayImage = overlay;
-
+            newFilter.OverlayImage = Overlay;
             imageFilter = newFilter;
         }
 

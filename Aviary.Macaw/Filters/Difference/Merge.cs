@@ -27,14 +27,14 @@ namespace Aviary.Macaw.Filters.Difference
 
         public Merge(Bitmap overlay) : base()
         {
-            this.overlay = overlay;
+            this.Overlay = overlay;
 
             SetFilter();
         }
 
         public Merge(Merge filter) : base(filter)
         {
-            this.overlay = filter.overlay;
+            this.Overlay = filter.overlay;
 
             SetFilter();
         }
@@ -45,10 +45,10 @@ namespace Aviary.Macaw.Filters.Difference
 
         public virtual Bitmap Overlay
         {
-            get { return overlay; }
+            get { return (Bitmap)overlay.Clone(); }
             set
             {
-                overlay = value;
+                overlay = value.ToAccordBitmap(ImageTypes.Rgb24bpp);
                 SetFilter();
             }
         }
@@ -61,7 +61,7 @@ namespace Aviary.Macaw.Filters.Difference
         {
             ImageType = ImageTypes.Rgb24bpp;
             Af.Merge newFilter = new Af.Merge();
-            newFilter.OverlayImage = overlay;
+            newFilter.OverlayImage = Overlay;
 
             imageFilter = newFilter;
         }

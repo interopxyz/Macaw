@@ -15,12 +15,12 @@ namespace Aviary.Macaw.Filters.Levels
 
         #region members
 
-        protected Wd.Domain yIn = new Wd.Domain(0, 255);
-        protected Wd.Domain yOut = new Wd.Domain(0, 255);
-        protected Wd.Domain cbIn = new Wd.Domain(0, 255);
-        protected Wd.Domain cbOut = new Wd.Domain(0, 255);
-        protected Wd.Domain crIn = new Wd.Domain(0, 255);
-        protected Wd.Domain crOut = new Wd.Domain(0, 255);
+        protected Wd.Domain yIn = new Wd.Domain(0, 1);
+        protected Wd.Domain yOut = new Wd.Domain(0, 1);
+        protected Wd.Domain cbIn = new Wd.Domain(0, 1);
+        protected Wd.Domain cbOut = new Wd.Domain(0, 1);
+        protected Wd.Domain crIn = new Wd.Domain(0, 1);
+        protected Wd.Domain crOut = new Wd.Domain(0, 1);
         
         #endregion
 
@@ -128,12 +128,12 @@ namespace Aviary.Macaw.Filters.Levels
         {
             ImageType = ImageTypes.Rgb32bpp;
             Af.YCbCrLinear newFilter = new Af.YCbCrLinear();
-            newFilter.InY = yIn.ToIntRange();
-            newFilter.OutY = yOut.ToIntRange();
-            newFilter.InCb = cbIn.ToIntRange();
-            newFilter.OutCb = cbOut.ToIntRange();
-            newFilter.InCr = crIn.ToIntRange();
-            newFilter.OutCr = crOut.ToIntRange();
+            newFilter.InY = yIn.ToIntRange(0,255);
+            newFilter.OutY = yOut.ToIntRange(0, 255);
+            newFilter.InCb = cbIn.ToIntRange(0, 255);
+            newFilter.OutCb = cbOut.ToIntRange(0, 255);
+            newFilter.InCr = crIn.ToIntRange(0, 255);
+            newFilter.OutCr = crOut.ToIntRange(0, 255);
             imageFilter = newFilter;
         }
 

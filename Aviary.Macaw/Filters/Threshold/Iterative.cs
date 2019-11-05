@@ -13,8 +13,8 @@ namespace Aviary.Macaw.Filters.Threshold
 
         #region members
         
-        protected int minimum = 1;
-        protected int threshold = 1;
+        protected double minimum = 1;
+        protected double threshold = 1;
 
         #endregion
 
@@ -25,7 +25,7 @@ namespace Aviary.Macaw.Filters.Threshold
             SetFilter();
         }
 
-        public Iterative(int minimum, int threshold) : base()
+        public Iterative(double minimum, double threshold) : base()
         {
             this.minimum = minimum;
             this.threshold = threshold;
@@ -45,7 +45,7 @@ namespace Aviary.Macaw.Filters.Threshold
 
         #region properties
         
-        public virtual int Minimum
+        public virtual double Minimum
         {
             get { return minimum; }
             set
@@ -54,7 +54,7 @@ namespace Aviary.Macaw.Filters.Threshold
                 SetFilter();
             }
         }
-        public virtual int Threshold
+        public virtual double Threshold
         {
             get { return threshold; }
             set
@@ -70,10 +70,10 @@ namespace Aviary.Macaw.Filters.Threshold
 
         private void SetFilter()
         {
-            ImageType = ImageTypes.Rgb24bpp;
+            ImageType = ImageTypes.GrayscaleBT709;
             Af.IterativeThreshold newFilter = new Af.IterativeThreshold();
-            newFilter.MinimumError = minimum;
-            newFilter.ThresholdValue = threshold;
+            newFilter.MinimumError = (int)Remap(minimum, 0, 10);
+            newFilter.ThresholdValue = (int)Remap(threshold, 0, 255);
 
             imageFilter = newFilter;
         }

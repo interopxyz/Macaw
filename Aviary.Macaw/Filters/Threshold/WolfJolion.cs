@@ -84,10 +84,10 @@ namespace Aviary.Macaw.Filters.Threshold
 
         private void SetFilter()
         {
-            ImageType = ImageTypes.Rgb24bpp;
+            ImageType = ImageTypes.GrayscaleBT709;
             Af.WolfJolionThreshold newFilter = new Af.WolfJolionThreshold();
             newFilter.K = k;
-            newFilter.R = r;
+            newFilter.R = Remap(r, 0, 255);
             newFilter.Radius = radius;
 
             imageFilter = newFilter;

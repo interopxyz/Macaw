@@ -71,7 +71,7 @@ namespace Aviary.Macaw.Filters.Threshold
 
         private void SetFilter()
         {
-            ImageType = ImageTypes.Rgb24bpp;
+            ImageType = ImageTypes.GrayscaleBT709;
             Af.BradleyLocalThresholding newFilter = new Af.BradleyLocalThresholding();
             newFilter.PixelBrightnessDifferenceLimit = (float)brightness;
             newFilter.WindowSize = window;

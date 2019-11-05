@@ -31,7 +31,7 @@ namespace Aviary.Macaw.Filters.Difference
         public StereoAnaglyph(Bitmap overlay, Modes mode) : base()
         {
             this.mode = mode;
-            this.overlay = overlay;
+            this.Overlay = overlay;
 
             SetFilter();
         }
@@ -39,7 +39,7 @@ namespace Aviary.Macaw.Filters.Difference
         public StereoAnaglyph(StereoAnaglyph filter) : base(filter)
         {
             this.mode = filter.mode;
-            this.overlay = filter.overlay;
+            this.Overlay = filter.overlay;
 
             SetFilter();
         }
@@ -50,10 +50,10 @@ namespace Aviary.Macaw.Filters.Difference
 
         public virtual Bitmap Overlay
         {
-            get { return overlay; }
+            get { return (Bitmap)overlay.Clone(); }
             set
             {
-                overlay = value;
+                overlay = value.ToAccordBitmap(ImageTypes.Rgb24bpp);
                 SetFilter();
             }
         }
@@ -76,7 +76,7 @@ namespace Aviary.Macaw.Filters.Difference
         {
             ImageType = ImageTypes.Rgb24bpp;
             Af.StereoAnaglyph newFilter = new Af.StereoAnaglyph();
-            newFilter.OverlayImage = overlay;
+            newFilter.OverlayImage = Overlay;
             newFilter.AnaglyphAlgorithm = (Af.StereoAnaglyph.Algorithm)mode;
 
             imageFilter = newFilter;

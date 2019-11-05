@@ -15,12 +15,12 @@ namespace Aviary.Macaw.Filters.Levels
 
         #region members
 
-        protected Wd.Domain redIn = new Wd.Domain(0, 255);
-        protected Wd.Domain redOut = new Wd.Domain(0, 255);
-        protected Wd.Domain greenIn = new Wd.Domain(0, 255);
-        protected Wd.Domain greenOut = new Wd.Domain(0, 255);
-        protected Wd.Domain blueIn = new Wd.Domain(0, 255);
-        protected Wd.Domain blueOut = new Wd.Domain(0, 255);
+        protected Wd.Domain redIn = new Wd.Domain(0, 1);
+        protected Wd.Domain redOut = new Wd.Domain(0, 1);
+        protected Wd.Domain greenIn = new Wd.Domain(0, 1);
+        protected Wd.Domain greenOut = new Wd.Domain(0, 1);
+        protected Wd.Domain blueIn = new Wd.Domain(0, 1);
+        protected Wd.Domain blueOut = new Wd.Domain(0, 1);
 
 
         #endregion
@@ -129,12 +129,12 @@ namespace Aviary.Macaw.Filters.Levels
         {
             ImageType = ImageTypes.Rgb32bpp;
             Af.LevelsLinear newFilter = new Af.LevelsLinear();
-            newFilter.InRed = redIn.ToIntRange();
-            newFilter.OutRed = redOut.ToIntRange();
-            newFilter.InGreen = greenIn.ToIntRange();
-            newFilter.OutGreen = greenOut.ToIntRange();
-            newFilter.InBlue = blueIn.ToIntRange();
-            newFilter.OutBlue = blueOut.ToIntRange();
+            newFilter.InRed = redIn.ToIntRange(0,255);
+            newFilter.OutRed = redOut.ToIntRange(0, 255);
+            newFilter.InGreen = greenIn.ToIntRange(0, 255);
+            newFilter.OutGreen = greenOut.ToIntRange(0, 255);
+            newFilter.InBlue = blueIn.ToIntRange(0, 255);
+            newFilter.OutBlue = blueOut.ToIntRange(0, 255);
             imageFilter = newFilter;
         }
 

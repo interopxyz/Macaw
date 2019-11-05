@@ -41,7 +41,7 @@ namespace Aviary.Macaw.Filters.Edges
 
         private void SetFilter()
         {
-            ImageType = ImageTypes.Rgb24bpp;
+            ImageType = ImageTypes.GrayscaleBT709;
             //Af.CompassConvolution newFilter = new Af.CompassConvolution();
             //imageFilter = newFilter;
         }

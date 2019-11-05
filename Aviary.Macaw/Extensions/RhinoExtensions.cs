@@ -19,7 +19,8 @@ namespace Aviary.Macaw
 
         public static System.Drawing.Rectangle ToDrawingRect(this Rg.Rectangle3d input, int transposition = 0)
         {
-            return new System.Drawing.Rectangle((int)input.Corner(0).X, (int)input.Corner(0).Y, (int)input.Corner(2).X, (int)input.Corner(2).Y);
+            if (transposition > 0) return new System.Drawing.Rectangle((int)input.Corner(0).X, (int)(transposition - input.Corner(3).Y), (int)input.Width, (int)input.Height);
+            return new System.Drawing.Rectangle((int)input.Corner(0).X, (int)input.Corner(0).Y, (int)input.Width, (int)input.Height);
         }
 
         public static Rg.Point3d ToRhPoint(this System.Drawing.Point input, int transposition=0)
@@ -29,6 +30,7 @@ namespace Aviary.Macaw
 
         public static System.Drawing.Point ToDrawingPoint(this Rg.Point3d input, int transposition = 0)
         {
+            if (transposition > 0) return new System.Drawing.Point((int)input.X, (int)(transposition-input.Y));
             return new System.Drawing.Point((int)input.X, (int)input.Y);
         }
 

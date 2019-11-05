@@ -58,7 +58,7 @@ namespace Aviary.Macaw.Filters.Adjustments
         {
             ImageType = ImageTypes.Rgb32bpp;
             Af.HueModifier newFilter = new Af.HueModifier();
-            newFilter.Hue = (int)Remap(hue, 0, 359); ;
+            newFilter.Hue = (int)Remap(hue, 0, 359);
             imageFilter = newFilter;
         }
 

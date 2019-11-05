@@ -28,7 +28,7 @@ namespace Aviary.Macaw.Filters.Difference
 
         public Morph(Bitmap overlay, double percent) : base()
         {
-            this.overlay = overlay;
+            this.Overlay = overlay;
             this.percent = percent;
 
             SetFilter();
@@ -36,7 +36,7 @@ namespace Aviary.Macaw.Filters.Difference
 
         public Morph(Morph filter) : base(filter)
         {
-            this.overlay = filter.overlay;
+            this.Overlay = filter.overlay;
             this.percent = filter.percent;
 
             SetFilter();
@@ -48,10 +48,10 @@ namespace Aviary.Macaw.Filters.Difference
 
         public virtual Bitmap Overlay
         {
-            get { return overlay; }
+            get { return (Bitmap)overlay.Clone(); }
             set
             {
-                overlay = value;
+                overlay = value.ToAccordBitmap(ImageTypes.Rgb24bpp);
                 SetFilter();
             }
         }
@@ -74,7 +74,7 @@ namespace Aviary.Macaw.Filters.Difference
         {
             ImageType = ImageTypes.Rgb24bpp;
             Af.Morph newFilter = new Af.Morph();
-            newFilter.OverlayImage = overlay;
+            newFilter.OverlayImage = Overlay;
             newFilter.SourcePercent = percent;
 
             imageFilter = newFilter;

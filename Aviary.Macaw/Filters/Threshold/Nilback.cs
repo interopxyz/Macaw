@@ -87,7 +87,7 @@ namespace Aviary.Macaw.Filters.Threshold
             ImageType = ImageTypes.Rgb24bpp;
             Af.NiblackThreshold newFilter = new Af.NiblackThreshold();
             newFilter.K = k;
-            newFilter.C = c;
+            newFilter.C = Remap(c, 0, 255);
             newFilter.Radius = radius;
 
             imageFilter = newFilter;

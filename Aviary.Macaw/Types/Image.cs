@@ -63,9 +63,15 @@ namespace Aviary.Macaw
 
         public Bitmap GetFilteredBitmap(int iterations = 0)
         {
-            Filter.ImageTypes imageType = Filter.ImageTypes.Rgb48bpp;
+            if (Filters.Count == 0)
+            {
+                return Bitmap;
+            }
+            else
+            {
+                Filter.ImageTypes imageType = Filter.ImageTypes.ARgb32bpp;
 
-            Af.FiltersSequence sequence = new Af.FiltersSequence();
+                Af.FiltersSequence sequence = new Af.FiltersSequence();
             foreach (Filter filter in Filters)
             {
                 sequence.Add(filter.FilterObject);
@@ -80,6 +86,7 @@ namespace Aviary.Macaw
             {
                 return sequence.Apply(this.Bitmap.ToAccordBitmap(imageType));
             }
+        }
         }
 
         public void BuildBitmap(List<Color> colors, int width = 100, int height = 100)
@@ -117,7 +124,7 @@ namespace Aviary.Macaw
                 }
             }
 
-            bitmap = bmp;
+            this.bitmap = bmp;
         }
 
         public void SwapChannels(Channels alpha, Channels red, Channels green, Channels blue)
