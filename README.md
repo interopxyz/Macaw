@@ -7,6 +7,8 @@ A range of data can be extracted from the images including pixel color values an
 Bitmaps can also be created though proceedural processes including noise and cellular from the Fast Noise Library.
 
 ### Dependencies
+
+Macaw is built on top of the following libraries.
  - [Fast Noise](https://github.com/Auburns/FastNoise_CSharp)
  - [Potrace](http://potrace.sourceforge.net/)
  - [CS Potrace](https://github.com/arkypita/LaserGRBL/tree/master/LaserGRBL/CsPotrace)
