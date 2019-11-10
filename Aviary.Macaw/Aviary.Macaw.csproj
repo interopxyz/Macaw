@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F63D18E9-6D82-41C1-AC61-33653E9A137A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Aviary.Macaw</RootNamespace>
+    <AssemblyName>Aviary.Macaw</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accord, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Accord.3.8.0\lib\net46\Accord.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Imaging, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Accord.Imaging.3.8.0\lib\net46\Accord.Imaging.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Math, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Accord.Math.3.8.0\lib\net46\Accord.Math.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Math.Core, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Accord.Math.3.8.0\lib\net46\Accord.Math.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Statistics, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Accord.Statistics.3.8.0\lib\net46\Accord.Statistics.dll</HintPath>
+    </Reference>
+    <Reference Include="CsPotrace">
+      <HintPath>..\packages\CsPotrace\CsPotrace.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="RhinoCommon, Version=5.1.30000.16, Culture=neutral, PublicKeyToken=552281e97c755530, processorArchitecture=MSIL">
+      <HintPath>..\packages\RhinoCommon.5.12.50810.13095\lib\net35\RhinoCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="SoundInTheory.DynamicImage, Version=3.1.1.0, Culture=neutral, PublicKeyToken=fa44558110383067, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamicImage.3.1.1\lib\net40\SoundInTheory.DynamicImage.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0.2\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\DynamicImage.cs" />
+    <Compile Include="Extensions\AccordExtensions.cs" />
+    <Compile Include="Extensions\BitmapExtensions.cs" />
+    <Compile Include="Extensions\GraphicExtensions.cs" />
+    <Compile Include="Extensions\RhinoExtensions.cs" />
+    <Compile Include="Files\BitmapFromFile.cs" />
+    <Compile Include="Filters\Adjustments\GrayWorld.cs" />
+    <Compile Include="Filters\Adjustments\Invert.cs" />
+    <Compile Include="Filters\Adjustments\RGChromacity.cs" />
+    <Compile Include="Filters\Adjustments\Sepia.cs" />
+    <Compile Include="Filters\Channels\Replace.cs" />
+    <Compile Include="Filters\Difference\FlatField.cs" />
+    <Compile Include="Filters\Difference\Intersect.cs" />
+    <Compile Include="Filters\Difference\Merge.cs" />
+    <Compile Include="Filters\Difference\Morph.cs" />
+    <Compile Include="Filters\Difference\Multiply.cs" />
+    <Compile Include="Filters\Difference\StereoAnaglyph.cs" />
+    <Compile Include="Filters\Difference\Add.cs" />
+    <Compile Include="Filters\Difference\Divide.cs" />
+    <Compile Include="Filters\Difference\Euclidean.cs" />
+    <Compile Include="Filters\Difference\MoveTowards.cs" />
+    <Compile Include="Filters\Edges\Compass.cs" />
+    <Compile Include="Filters\Figures\Gabor.cs" />
+    <Compile Include="Filters\Levels\HSL.cs" />
+    <Compile Include="Filters\Levels\RGB.cs" />
+    <Compile Include="Filters\Levels\RGB16.cs" />
+    <Compile Include="Filters\Levels\YCbCr.cs" />
+    <Compile Include="Filters\Transform\Mirror.cs" />
+    <Compile Include="Filters\Transform\Polar.cs" />
+    <Compile Include="Filters\Difference\Simple.cs" />
+    <Compile Include="Filters\Difference\Subtract.cs" />
+    <Compile Include="Filters\Dither\Burkes.cs" />
+    <Compile Include="Filters\Dither\Carry.cs" />
+    <Compile Include="Filters\Dither\Bayer.cs" />
+    <Compile Include="Filters\Dither\FloydSteinberg.cs" />
+    <Compile Include="Filters\Dither\JarvisJudiceNinke.cs" />
+    <Compile Include="Filters\Dither\Ordered.cs" />
+    <Compile Include="Filters\Dither\Sierra.cs" />
+    <Compile Include="Filters\Dither\Stucki.cs" />
+    <Compile Include="Filters\Edges\Canny.cs" />
+    <Compile Include="Filters\Edges\Difference.cs" />
+    <Compile Include="Filters\Edges\Homogeneity.cs" />
+    <Compile Include="Filters\Edges\Kirsch.cs" />
+    <Compile Include="Filters\Edges\Robinson.cs" />
+    <Compile Include="Filters\Edges\Sobel.cs" />
+    <Compile Include="Filters\Edges\Variance.cs" />
+    <Compile Include="Filters\Channels\Extract.cs" />
+    <Compile Include="Filters\Figures\BandsHorizontal.cs" />
+    <Compile Include="Filters\Figures\BandsVertical.cs" />
+    <Compile Include="Filters\Figures\DilationBinary.cs" />
+    <Compile Include="Filters\Figures\ErosionBinary.cs" />
+    <Compile Include="Filters\Figures\ErosionWatershed.cs" />
+    <Compile Include="Filters\Figures\BlobsFilter.cs" />
+    <Compile Include="Filters\Figures\HatBottom.cs" />
+    <Compile Include="Filters\Figures\Closing.cs" />
+    <Compile Include="Filters\Figures\Dilation.cs" />
+    <Compile Include="Filters\Figures\Erosion.cs" />
+    <Compile Include="Filters\Figures\FillHoles.cs" />
+    <Compile Include="Filters\Figures\Opening.cs" />
+    <Compile Include="Filters\Figures\Skeletonization.cs" />
+    <Compile Include="Filters\Figures\SkeletonizationZhangSuen.cs" />
+    <Compile Include="Filters\Figures\HatTop.cs" />
+    <Compile Include="Filters\Figures\BlobsUnique.cs" />
+    <Compile Include="Tracing\CsPotracer.cs" />
+    <Compile Include="Types\Filter.cs" />
+    <Compile Include="Filters\Adjustments\Brightness.cs" />
+    <Compile Include="Filters\Adjustments\Contrast.cs" />
+    <Compile Include="Filters\Adjustments\Gamma.cs" />
+    <Compile Include="Filters\Adjustments\Histogram.cs" />
+    <Compile Include="Filters\Adjustments\Hue.cs" />
+    <Compile Include="Filters\Adjustments\Saturation.cs" />
+    <Compile Include="Filters\Adjustments\Stretch.cs" />
+    <Compile Include="Filters\Adjustments\WhitePatch.cs" />
+    <Compile Include="Filters\Effects\Additive.cs" />
+    <Compile Include="Filters\Effects\Blur.cs" />
+    <Compile Include="Filters\Effects\BoxBlur.cs" />
+    <Compile Include="Filters\Effects\Daube.cs" />
+    <Compile Include="Filters\Effects\GaussianBlur.cs" />
+    <Compile Include="Filters\Effects\Jitter.cs" />
+    <Compile Include="Filters\Effects\Kuwahara.cs" />
+    <Compile Include="Filters\Effects\Pixellate.cs" />
+    <Compile Include="Filters\Effects\Posterize.cs" />
+    <Compile Include="Filters\Effects\Ripple.cs" />
+    <Compile Include="Filters\Effects\SaltPepper.cs" />
+    <Compile Include="Filters\Filtering\Color.cs" />
+    <Compile Include="Filters\Filtering\Channel.cs" />
+    <Compile Include="Filters\Filtering\HSL.cs" />
+    <Compile Include="Filters\Filtering\YCbCr.cs" />
+    <Compile Include="Filters\Grayscale\GrayscaleBT709.cs" />
+    <Compile Include="Filters\Grayscale\GrayscaleRMY.cs" />
+    <Compile Include="Filters\Grayscale\GrayscaleY.cs" />
+    <Compile Include="Filters\Grayscale\Simple.cs" />
+    <Compile Include="Filters\Smoothing\Adaptive.cs" />
+    <Compile Include="Filters\Smoothing\Bilateral.cs" />
+    <Compile Include="Filters\Smoothing\Conservative.cs" />
+    <Compile Include="Filters\Sharpening\Gaussian.cs" />
+    <Compile Include="Filters\Sharpening\HighBoost.cs" />
+    <Compile Include="Filters\Smoothing\Mean.cs" />
+    <Compile Include="Filters\Smoothing\Median.cs" />
+    <Compile Include="Filters\Sharpening\Simple.cs" />
+    <Compile Include="Filters\Threshold\Bradley.cs" />
+    <Compile Include="Filters\Threshold\Iterative.cs" />
+    <Compile Include="Filters\Threshold\Nilback.cs" />
+    <Compile Include="Filters\Threshold\Otsu.cs" />
+    <Compile Include="Filters\Threshold\Sauvola.cs" />
+    <Compile Include="Filters\Threshold\Simple.cs" />
+    <Compile Include="Filters\Threshold\SIS.cs" />
+    <Compile Include="Filters\Threshold\WolfJolion.cs" />
+    <Compile Include="Filters\Transform\Crop.cs" />
+    <Compile Include="Filters\Transform\Move.cs" />
+    <Compile Include="Filters\Transform\Resize.cs" />
+    <Compile Include="Filters\Transform\Rotate.cs" />
+    <Compile Include="Filters\Transform\Shrink.cs" />
+    <Compile Include="Layering\Composition.cs" />
+    <Compile Include="Layering\Layer.cs" />
+    <Compile Include="Layering\Modifier.cs" />
+    <Compile Include="Procedural\Libraries\FastNoise.cs" />
+    <Compile Include="Procedural\Noise\Noise.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tracing\Blobs.cs" />
+    <Compile Include="Tracing\Corners.cs" />
+    <Compile Include="Tracing\Shapes.cs" />
+    <Compile Include="Tracing\Trace.cs" />
+    <Compile Include="Types\Image.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Procedural\Cellular\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Aviary.Wind\Aviary.Wind\Aviary.Wind.csproj">
+      <Project>{1dcf2e8c-b3e6-4bb9-aedb-ae0e1d4af9f4}</Project>
+      <Name>Aviary.Wind</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="packages\Accord.3.8.0\build\Accord.targets" Condition="Exists('packages\Accord.3.8.0\build\Accord.targets')" />
+  <Import Project="packages\RhinoCommon.5.12.50810.13095\build\net35\RhinoCommon.targets" Condition="Exists('packages\RhinoCommon.5.12.50810.13095\build\net35\RhinoCommon.targets')" />
+  <Import Project="..\packages\RhinoCommon.5.12.50810.13095\build\net35\RhinoCommon.targets" Condition="Exists('..\packages\RhinoCommon.5.12.50810.13095\build\net35\RhinoCommon.targets')" />
+  <Import Project="..\packages\Accord.3.8.0\build\Accord.targets" Condition="Exists('..\packages\Accord.3.8.0\build\Accord.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Accord.3.8.0\build\Accord.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Accord.3.8.0\build\Accord.targets'))" />
+  </Target>
+</Project>
