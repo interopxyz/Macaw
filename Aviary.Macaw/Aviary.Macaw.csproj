@@ -142,6 +142,7 @@
     <Compile Include="Filters\Figures\SkeletonizationZhangSuen.cs" />
     <Compile Include="Filters\Figures\HatTop.cs" />
     <Compile Include="Filters\Figures\BlobsUnique.cs" />
+    <Compile Include="Tracing\CsPotracer.cs" />
     <Compile Include="Types\Filter.cs" />
     <Compile Include="Filters\Adjustments\Brightness.cs" />
     <Compile Include="Filters\Adjustments\Contrast.cs" />

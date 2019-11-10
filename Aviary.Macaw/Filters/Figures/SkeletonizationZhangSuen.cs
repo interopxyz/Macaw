@@ -49,5 +49,14 @@ namespace Aviary.Macaw.Filters.Figures
 
         #endregion
 
+        #region override
+
+        public override string ToString()
+        {
+            return "Filter: Skeletonization Zhang Suen";
+        }
+
+        #endregion
+
     }
 }

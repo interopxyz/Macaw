@@ -81,5 +81,14 @@ namespace Aviary.Macaw.Filters.Threshold
 
         #endregion
 
+        #region override
+
+        public override string ToString()
+        {
+            return "Filter: Bradley Threshold";
+        }
+
+        #endregion
+
     }
 }

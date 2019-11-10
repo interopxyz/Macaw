@@ -49,5 +49,14 @@ namespace Aviary.Macaw.Filters.Smoothing
 
         #endregion
 
+        #region override
+
+        public override string ToString()
+        {
+            return "Filter: Adaptive Smoothing";
+        }
+
+        #endregion
+
     }
 }

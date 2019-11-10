@@ -64,5 +64,14 @@ namespace Aviary.Macaw.Filters.Dither
 
         #endregion
 
+        #region override
+
+        public override string ToString()
+        {
+            return "Filter: Dither Jarvis Judice Ninke";
+        }
+
+        #endregion
+
     }
 }

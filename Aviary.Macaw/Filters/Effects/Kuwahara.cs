@@ -70,5 +70,14 @@ namespace Aviary.Macaw.Filters.Effects
 
         #endregion
 
+        #region override
+
+        public override string ToString()
+        {
+            return "Filter: Kuwahara";
+        }
+
+        #endregion
+
     }
 }

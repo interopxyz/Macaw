@@ -78,5 +78,14 @@ namespace Aviary.Macaw.Filters.Sharpening
 
         #endregion
 
+        #region override
+
+        public override string ToString()
+        {
+            return "Filter: High Boost Sharpening";
+        }
+
+        #endregion
+
     }
 }

@@ -9,20 +9,20 @@ using Sm = System.Windows.Media;
 using Ws = System.Windows.Shapes;
 using Pt = CsPotrace;
 using Rg = Rhino.Geometry;
+using System.Collections;
 
 namespace Aviary.Macaw
 {
     public static class TraceBitmap
     {
-        public enum TurnModes {Black, White, Majority, Minority, Right };
+        public enum TurnModes {Black, White, Majority, Minority, Right,Left };
 
         #region Tracing
-
+        
         public static List<Rg.Polyline> TraceToRhino(this Bitmap input,  double threshold, double alpha, double tolerance, int size, bool optimize, TurnModes mode)
         {
             List<List<Pt.Curve>> crvs = new List<List<Pt.Curve>>();
             List<Rg.Polyline> polylines = new List<Rg.Polyline>();
-
             int height = input.Height;
 
             Pt.Potrace.Clear();
@@ -33,7 +33,7 @@ namespace Aviary.Macaw
 
             Pt.Potrace.opttolerance = tolerance;
             Pt.Potrace.Treshold = threshold;
-            Pt.Potrace.alphamax = alpha;
+            Pt.Potrace.alphamax = alpha * 1.3334;
 
             Pt.Potrace.turdsize = size;
 
@@ -41,12 +41,20 @@ namespace Aviary.Macaw
 
             foreach (var crvList in crvs)
             {
+                
                 Rg.Polyline polyline = new Rg.Polyline();
                 polyline.Add(crvList[0].A.ToRhPoint(height));
                 foreach (Pt.Curve curve in crvList)
                 {
-                    polyline.Add(curve.B.ToRhPoint(height));
+                    Rg.Point3d a = curve.ControlPointA.ToRhPoint(height);
+                    Rg.Point3d b = curve.ControlPointB.ToRhPoint(height);
+                    Rg.Point3d c = curve.B.ToRhPoint(height);
+
+                    if (a!=polyline[polyline.Count-1]) polyline.Add(a);
+                    if (b != a) polyline.Add(b);
+                    if (c != b) polyline.Add(c);
                 }
+                if (!polyline.IsClosed) polyline.Add(crvList[0].A.ToRhPoint(height));
                 polylines.Add(polyline);
             }
 

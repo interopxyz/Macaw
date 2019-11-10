@@ -104,5 +104,14 @@ namespace Aviary.Macaw.Filters.Transform
 
         #endregion
 
+        #region override
+
+        public override string ToString()
+        {
+            return "Filter: Xform Crop";
+        }
+
+        #endregion
+
     }
 }

@@ -64,5 +64,14 @@ namespace Aviary.Macaw.Filters.Adjustments
 
         #endregion
 
+        #region override
+
+        public override string ToString()
+        {
+            return "Filter: Gamma";
+        }
+
+        #endregion
+
     }
 }

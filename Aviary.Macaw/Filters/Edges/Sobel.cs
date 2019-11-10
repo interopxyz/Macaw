@@ -64,5 +64,14 @@ namespace Aviary.Macaw.Filters.Edges
 
         #endregion
 
+        #region override
+
+        public override string ToString()
+        {
+            return "Filter: Edges Sobel";
+        }
+
+        #endregion
+
     }
 }

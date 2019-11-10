@@ -134,5 +134,14 @@ namespace Aviary.Macaw.Filters.Filtering
 
         #endregion
 
+        #region override
+
+        public override string ToString()
+        {
+            return "Filter: YCbCr Filtering";
+        }
+
+        #endregion
+
     }
 }

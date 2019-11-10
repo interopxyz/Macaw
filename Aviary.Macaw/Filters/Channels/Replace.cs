@@ -91,5 +91,14 @@ namespace Aviary.Macaw.Filters.Channels
 
         #endregion
 
+        #region override
+
+        public override string ToString()
+        {
+            return "Filter: Replace Channel";
+        }
+
+        #endregion
+
     }
 }

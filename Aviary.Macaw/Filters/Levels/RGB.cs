@@ -140,5 +140,14 @@ namespace Aviary.Macaw.Filters.Levels
 
         #endregion
 
+        #region override
+
+        public override string ToString()
+        {
+            return "Filter: RGB Levels";
+        }
+
+        #endregion
+
     }
 }

@@ -89,5 +89,14 @@ namespace Aviary.Macaw.Filters.Grayscale
 
         #endregion
 
+        #region override
+
+        public override string ToString()
+        {
+            return "Filter: Simple Grayscale";
+        }
+
+        #endregion
+
     }
 }

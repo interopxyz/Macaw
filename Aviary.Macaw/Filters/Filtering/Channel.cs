@@ -120,5 +120,14 @@ namespace Aviary.Macaw.Filters.Filtering
 
         #endregion
 
+        #region override
+
+        public override string ToString()
+        {
+            return "Filter: Channel Filtering";
+        }
+
+        #endregion
+
     }
 }

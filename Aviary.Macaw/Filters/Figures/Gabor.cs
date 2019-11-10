@@ -137,5 +137,14 @@ namespace Aviary.Macaw.Filters.Figures
 
         #endregion
 
+        #region override
+
+        public override string ToString()
+        {
+            return "Filter: Gabor";
+        }
+
+        #endregion
+
     }
 }

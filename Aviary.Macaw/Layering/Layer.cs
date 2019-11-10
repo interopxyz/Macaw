@@ -122,6 +122,16 @@ namespace Aviary.Macaw.Layering
 
         #region methods
 
+        public override string ToString()
+        {
+            string text = "";
+            if (isMasked) text += "Masked ";
+            text+="Layer";
+            if (BlendMode != BlendModes.Normal) text += ": " + BlendMode.ToString();
+            if (Modifiers.Count > 0) text += " [" + Modifiers.Count + " Modifiers]";
+
+            return text;
+        }
 
 
         #endregion

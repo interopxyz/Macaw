@@ -67,5 +67,14 @@ namespace Aviary.Macaw.Filters.Difference
 
         #endregion
 
+        #region override
+
+        public override string ToString()
+        {
+            return "Filter: Difference Additive";
+        }
+
+        #endregion
+
     }
 }
